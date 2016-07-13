@@ -1,0 +1,10 @@
+<% include ../partials/header %>
+<h1>MVJSA Blog</h1>
+<% blogPosts.forEach(function(blogPost){ %>
+  <a href="<%= blogPost._id %>" class="blog-post-link">
+    <h3 class="post-title"><%= blogPost.title %></h3>
+    <h4 class="post-author">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></h4>
+  </a>
+  <br>
+<% }); %>
+<% include ../partials/footer %>

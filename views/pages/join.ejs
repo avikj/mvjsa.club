@@ -1,0 +1,80 @@
+<% include ../partials/header %>
+<div class="content-wrapper clearfix">
+	<h1 class="content-header">Join Us</h1>
+  <p>Ready to be part of the exciting experience of Monta Vista Website Development? Then fill out our simple registration form below to start the process of becoming a member!</p>
+  <h2>Registration Form</h2>
+  <p>All fields are required.</p>
+  <form id="registration-form" action="signup" method="post">
+  	<div class="form-wrapper">
+      <table class="form-table">
+        <tr>
+          <td><label for="fname">First name: </label></td>
+          <td><input type="text" id="fname" name="fname" /></td>
+        </tr>
+        <tr>
+          <td><label for="lname">Last name: </label></td>
+          <td><input type="text" id="lname" name="lname" /></td>
+        </tr>
+        <tr>
+          <td><label for="password">Password: </label></td>
+          <td><input type="password" id="password" name="password" /></td>
+        </tr>
+        <tr>
+          <td><label for="grade">Grade: </label></td>
+          <td>
+            <select id="grade">
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <table class="form-table">
+        <tr>
+          <td><label for="email">Email Address: </label></td>
+          <td><input type="text" id="email" name="email" /></td>
+        </tr>
+        <tr>
+          <td><label for="dob1">Date of Birth: </label></td>
+          <td>
+            <div class="dob-wrapper">
+              <input type="text" id="dob1" name="dob1" class="dob" placeholder="MM" maxlength="2" />
+            </div>
+            <div class="dob-wrapper">
+              <input type="text" id="dob2" name="dob2" class="dob" placeholder="DD" maxlength="2" />
+            </div>
+            <div class="dob-wrapper">
+              <input type="text" id="dob3" name="dob3" class="dob" placeholder="YYYY" maxlength="4" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="phone1">Phone number: </label></td>
+          <td>
+            <div class="phone-wrapper">
+              <input type="text" id="phone1" name="phone1" class="phone" placeholder="XXX" maxlength="3" />
+            </div>
+            <div class="phone-wrapper">
+              <input type="text" id="phone2" name="phone2" class="phone" placeholder="XXX" maxlength="3" />
+            </div>
+            <div class="phone-wrapper">
+              <input type="text" id="phone3" name="phone3" class="phone" placeholder="XXXX" maxlength="4" />
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" id="submit" name="submit" value="Submit" /></td>
+        </tr>
+         <tr>
+          <td></td>
+          <td><div id="form-alert"></div></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>
+
+<% include ../partials/footer %>
