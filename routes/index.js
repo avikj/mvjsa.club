@@ -17,9 +17,9 @@ module.exports = function(passport) {
 
   router.get('/members', function(req, res, next) {
     if(req.user) {
-      res.render('member_portal', { user: req.user, currentView: 'member_portal' });
+      res.render('member_portal', { user: req.user, currentView: 'members' });
     } else {
-      res.render('members_login', { user: req.user, currentView: 'members_login' });
+      res.render('members_login', { user: req.user, currentView: 'members' });
     }
   });
 

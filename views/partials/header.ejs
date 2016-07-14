@@ -9,6 +9,8 @@
 
   <meta name="viewport" content="width=device-width">
 
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link rel="stylesheet" href="/css/style.css">
 
   <script src="/js/libs/modernizr-2.5.3.min.js"></script>
@@ -16,23 +18,25 @@
 <body>
 <header class="site-header">
   <div class="header-wrapper">
-    <div class="logo">
-      <a href="index"><img src="/img/mvjsa_logo.png" width="440" height="74" alt="MV JSA"/></a>
-    </div>
-    <nav class="site-nav">
-      <ul class="menu">
-        <li class="menu-item <%= currentView == 'index' ? 'current-menu-item' : '' %>"><a href="/">home</a></li>
-        <li class="menu-item <%= currentView == 'news' ? 'current-menu-item' : '' %>"><a href="news">news</a></li>
-        <li class="menu-item <%= currentView == 'about' ? 'current-menu-item' : '' %>"><a href="about">about</a></li>
-        <li class="menu-item <%= currentView == 'members' ? 'current-menu-item' : '' %>"><a href="members"><%= user ? 'member portal' : 'login'  %></a></li>
-        <% if(user) { %>
-          <li class="menu-item"><a href="logout">logout</a></li>
-        <% } else {%>
-          <li class="menu-item <%= currentView == 'join' ? 'current-menu-item' : '' %>"><a href="join">join</a></li>
-        <% } %>
-      </ul>
+    <div class="navbar-fixed">
+    <nav class="site-nav blue darken-4 white-text">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo"><img src="/img/mvjsa_logo.png" alt="MV JSA"/></a>
+        <ul id="nav-mobile" class="menu right hide-on-med-and-down">
+          <li class="menu-item waves-effect <%= currentView == 'index' ? 'active' : '' %>"><a href="/">Home</a></li>
+          <li class="menu-item waves-effect <%= currentView == 'blog' ? 'active' : '' %>"><a href="blog">Blog</a></li>
+          <li class="menu-item waves-effect <%= currentView == 'about' ? 'active' : '' %>"><a href="about">About</a></li>
+          <li class="menu-item waves-effect <%= currentView == 'members' ? 'active' : '' %>"><a href="members"><%= user ? 'Member Portal' : 'Login'  %></a></li>
+          <% if(user) { %>
+            <li class="menu-item waves-effect"><a href="logout">Logout</a></li>
+          <% } else {%>
+            <li class="menu-item waves-effect <%= currentView == 'join' ? 'active' : '' %>"><a href="join">Join</a></li>
+          <% } %>
+        </ul>
+      </div>
     </nav>
+    </div>
   </div>
 </header>
-<div role="main">
+<main role="main">
   <div class="main-wrapper">

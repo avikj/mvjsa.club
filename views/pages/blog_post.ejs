@@ -1,15 +1,16 @@
 <% include ../partials/header %>
-<div class="blog-post">
-  <h3 class="post-title"><%= blogPost.title %></h3>
+<div class="blog-post container z-depth-2">
+  <h2 class="post-title"><%= blogPost.title %></h3>
   <h4 class="post-author">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></h3>
+  <div class="divider"></div>
   <div class="post-body"><%- blogPost.body %></div>
-  <div class="comments-wrapper">
+  <!--<div class="comments-wrapper">
     <% blogPost.comments.forEach(function(comment){ %>
       <div class="comment">
         <h5 class="comment-author"><%= comment.author %></h5>
         <p class="comment-body"><%= comment.body %></p>
       </div>
     <% }); %>
-  </div>
+  </div>-->
 </div>
 <% include ../partials/footer %>

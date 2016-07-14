@@ -1,10 +1,17 @@
 <% include ../partials/header %>
-<h1>MVJSA Blog</h1>
-<% blogPosts.forEach(function(blogPost){ %>
-  <a href="<%= blogPost._id %>" class="blog-post-link">
-    <h3 class="post-title"><%= blogPost.title %></h3>
-    <h4 class="post-author">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></h4>
-  </a>
-  <br>
-<% }); %>
+<div class="container">
+	<h1>MVJSA Blog</h1>
+	<div class="row">
+		<% blogPosts.forEach(function(blogPost, index){ %>
+		  <a href="/blog/<%= blogPost._id %>" class="blog-post-link">
+		  	<div class="card col m5 <%= index%2==1 ? 'offset-m2' : '' %> hoverable waves-effect">
+			  	<div class="card-content">
+				    <h3 class="card-title post-title black-text"><%= blogPost.title %></h3>
+				    <p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
+				   </div>
+			  </div>
+		  </a>
+		<% }); %>
+	</div>
+</div>
 <% include ../partials/footer %>

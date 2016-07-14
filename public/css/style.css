@@ -1,3 +1,30 @@
-* {
-  font-family: Helvetica, sans-serif;
+/* sticky footer */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
+main {
+  flex: 1 0 auto;
+}
+
+h1, h2 {
+	font-weight: 100;
+}
+h3 {
+	font-weight: 300;
+}
+
+nav ul li {
+	font-weight: 200;
+}
+
+/* blog post styles */
+.blog-post {
+	padding: 30px;
+}
+.blog-post .post-author {
+	font-weight: 300;
+	font-size: 1.3em;
+}
+
