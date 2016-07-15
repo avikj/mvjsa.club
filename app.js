@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(expressSession({secret: 'mvjsasecretkey'}));
+app.use(expressSession({secret: 'mvjsasecretkey', maxAge: 1000*60*60*24}));
 
 
 app.use(passport.initialize());

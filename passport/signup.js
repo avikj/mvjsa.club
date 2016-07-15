@@ -30,7 +30,9 @@ module.exports = function(passport){
             lname: req.body.lname,
             grade: req.body.grade,
             dob: req.body.dob,
-            phone: req.body.phone
+            phone: req.body.phone,
+            sid: req.body.sid,
+            gender: req.body.gender
         });
 
         // save the user

@@ -1,0 +1,64 @@
+/* sticky footer */
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+
+h1, h2 {
+	font-weight: 100;
+}
+h3 {
+	font-weight: 300;
+}
+
+nav ul li {
+	font-weight: 200;
+}
+/* blog styles */
+.blog-post-link {
+	.card {
+		height: 30vh;
+		.card-title {
+			line-height: 1.15;
+		}
+	}
+}
+.add-post-button-wrapper {
+	height: 30vh;
+	.btn {
+		width: 10%
+	}
+}
+
+/* blog post styles */
+.blog-post {
+	width: 100%;
+	padding: 40px;
+	margin-bottom: -40px;
+	margin-top: -20px;
+	min-height: 80vh;
+	.post-author {
+		font-weight: 300;
+		font-size: 1.3em;
+	}
+	.post-body {
+	}
+	@media screen and (max-width: 992) {
+		padding: 20px;
+	}
+}
+
+
+/* new blog post styles */
+.new-blog-post-form {
+
+}
+#post-title-input {
+	font-weight: 300;
+	font-size: 3rem;
+	line-height: 1.5;
+}
