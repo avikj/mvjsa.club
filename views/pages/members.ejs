@@ -1,24 +1,12 @@
-<?php
-
-include_once 'header.php';
-include_once 'mysql_connect.php';
-
-if(isset($user)) {
-	if(isset($_REQUEST['action']) && $_REQUEST['action']=="passchange") {
-		include_once 'passchange.php';
-	}
-	else if(isset($_SESSION['admin'])) {
-		if(isset($_REQUEST['action']))
-			include_once $_REQUEST['action'].'.php';
-		else
-			include_once 'admin_portal.php';
-	}
-	else
-		include_once 'members_portal.php';
-}
-else
-	include_once 'members_login.php';
-
-include_once 'footer.php';
-
-?>
+<% include ../partials/header %>
+<div class="content-wrapper">
+  <h1 class="content-header">Member Portal</h1>
+  <div class="center-align">
+    <h2>Name: <%= user.fname %> <%= user.lname %></h2>
+    <h2>Grade: <%= user.grade %></h2>
+    <h2>Email: <%= user.email %></h2>
+    <h2>Phone: <%= user.phone %></h2>
+    <h2>Birthday: <%= user.dob %></h2>
+  </div>
+</div>
+<% include ../partials/footer %>

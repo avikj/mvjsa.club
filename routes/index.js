@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var isAuthenticated = require('../passport/isAuthenticated');
+
 module.exports = function(passport) {
   /* GET home page. */
   router.get('/', function(req, res, next) {
@@ -15,12 +17,16 @@ module.exports = function(passport) {
     res.render('about', { user: req.user, currentView: 'about' });
   });
 
-  router.get('/members', function(req, res, next) {
+  router.get('/login', function(req, res, next) {
     if(req.user) {
-      res.render('member_portal', { user: req.user, currentView: 'members' });
+      res.redirect('/members');
     } else {
-      res.render('members_login', { user: req.user, currentView: 'members' });
+      res.render('login', { user: req.user, currentView: 'login' });
     }
+  });
+
+  router.get('/members', isAuthenticated, function(req, res, next) {
+    res.render('members', { user: req.user, currentView: 'members' });
   });
 
 

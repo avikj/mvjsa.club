@@ -29,10 +29,11 @@
               <li class="menu-item waves-effect <%= currentView == 'index' ? 'active' : '' %>"><a href="/">Home</a></li>
               <li class="menu-item waves-effect <%= currentView == 'blog' ? 'active' : '' %>"><a href="/blog">Blog</a></li>
               <li class="menu-item waves-effect <%= currentView == 'about' ? 'active' : '' %>"><a href="/about">About</a></li>
-              <li class="menu-item waves-effect <%= currentView == 'members' ? 'active' : '' %>"><a href="/members"><%= user ? 'Member Portal' : 'Login'  %></a></li>
               <% if(user) { %>
+                <li class="menu-item waves-effect <%= currentView == 'login' ? 'active' : '' %>"><a href="/members">Member Portal</a></li>
                 <li class="menu-item waves-effect dropdown-button" data-activates="account-dropdown"><a href="#"><%= user.fname %> <%= user.lname %></a></li>
               <% } else {%>
+                <li class="menu-item waves-effect <%= currentView == 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
                 <li class="menu-item waves-effect <%= currentView == 'join' ? 'active' : '' %>"><a href="/join">Join</a></li>
               <% } %>
             </ul>
