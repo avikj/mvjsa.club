@@ -32,6 +32,9 @@ nav ul li {
 			line-height: 1.15;
 		}
 	}
+	.date {
+		float: bottom;
+	}
 }
 .add-post-button-wrapper {
 	height: 30vh;
@@ -50,8 +53,6 @@ nav ul li {
 	.post-author {
 		font-weight: 300;
 		font-size: 1.3em;
-	}
-	.post-body {
 	}
 	@media screen and (max-width: 992) {
 		padding: 20px;

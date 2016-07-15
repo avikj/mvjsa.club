@@ -6,7 +6,10 @@
 	  	<div class="card col m5 <%= index%2==1 ? 'offset-m2' : '' %> s12 hoverable waves-effect valign-wrapper">
 		  	<div class="card-content valign">
 			    <h3 class="card-title post-title black-text"><%= blogPost.title %></h3>
-			    <p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
+			    <div class="author-date-wrapper">
+			    	<p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
+			    	<p class="black-text date"><%= formatDate(blogPost.publishedAt) %></p>
+			    </div>
 			   </div>
 		  </div>
 	  </a>

@@ -1,5 +1,5 @@
 var config = require('./config');
-
+var dateFormat = require('dateformat');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -32,7 +32,11 @@ mongoose.connect(config.mongodbUrl, function(err) {
 // view engine setup
 app.set('views', path.join(__dirname, 'views', 'pages'));
 app.set('view engine', 'ejs');
-
+app.locals = {
+  formatDate: function(date) {
+    return dateFormat(date, 'mmm d, yyyy');
+  }
+};
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
