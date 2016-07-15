@@ -3,6 +3,7 @@ var blogPostSchema = new mongoose.Schema({
   title: String,
   body: String,
   createdAt: Date,
+  publishedAt: Date,
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

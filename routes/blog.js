@@ -56,6 +56,12 @@ router.post('/pending/:postId/accept', isAdmin, function(req, res, next) {
   });
 });
 
+router.post('/pending/:postId/reject', isAdmin, function(req, res, next) {
+  BlogPost.update({ _id: req.params.postId }, { $set: { status: 'rejected' } }, function(err) {
+    res.redirect('/member');
+  });
+});
+
 router.get('/:postId', function(req, res, next) {
   BlogPost.findOne({_id: req.params.postId, status: 'accepted'})
     .populate('author')
