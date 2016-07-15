@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 var isAuthenticated = require('../passport/isAuthenticated');
+var isAdmin = require('../passport/isAdmin');
 var BlogPost = require('../models/blogPost')
 
 router.get('/', function(req, res, next) {
-  BlogPost.find({/*status: 'accepted'*/})
+  BlogPost.find({status: 'accepted'})
     .populate('author')
     .exec(function(err, blogPosts) {
       res.render('blog', { user: req.user, currentView: 'blog', blogPosts: blogPosts });
@@ -36,16 +37,34 @@ router.post('/new', isAuthenticated, function(req, res, next) {
   });
 });
 
-router.get('/:postId', function(req, res, next) {
-  BlogPost.findOne({_id: req.params.postId})
+router.get('/pending/:postId', isAdmin, function(req, res, next) {
+  BlogPost.findOne({_id: req.params.postId, status: 'pending'})
     .populate('author')
     .populate('comments.author')
     .exec(function(err, blogPost) {
-      if(err) {
-        res.sendStatus(520);
-        throw err;
-      } else {
+      if(blogPost){
         res.render('blog_post', { user: req.user, currentView: 'blog_post', blogPost: blogPost});
+      } else {
+        next();
+      }
+    });
+});
+
+router.post('/pending/:postId/accept', isAdmin, function(req, res, next) {
+  BlogPost.update({ _id: req.params.postId }, { $set: { status: 'accepted' } }, function(err) {
+    res.redirect('/member');
+  });
+});
+
+router.get('/:postId', function(req, res, next) {
+  BlogPost.findOne({_id: req.params.postId, status: 'accepted'})
+    .populate('author')
+    .populate('comments.author')
+    .exec(function(err, blogPost) {
+      if(blogPost) {
+        res.render('blog_post', { user: req.user, currentView: 'blog_post', blogPost: blogPost});
+      } else {
+        next(); // forward request to 404 handler
       }
     });
 });

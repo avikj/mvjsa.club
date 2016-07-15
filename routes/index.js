@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var isAuthenticated = require('../passport/isAuthenticated');
-
+var BlogPost = require('../models/blogPost.js');
 module.exports = function(passport) {
   /* GET home page. */
   router.get('/', function(req, res, next) {
@@ -19,14 +19,26 @@ module.exports = function(passport) {
 
   router.get('/login', function(req, res, next) {
     if(req.user) {
-      res.redirect('/members');
+      res.redirect('/member');
     } else {
       res.render('login', { user: req.user, currentView: 'login' });
     }
   });
 
-  router.get('/members', isAuthenticated, function(req, res, next) {
-    res.render('members', { user: req.user, currentView: 'members' });
+  router.get('/member', isAuthenticated, function(req, res, next) {
+    if(req.user.isAdmin){
+      BlogPost.find({ status: 'pending' })
+      .populate('author')
+      .exec(function(err, pendingBlogPosts) {
+        if(err) {
+          console.error(err);
+          return res.sendStatus(520);
+        }
+        res.render('admin', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts });
+      });
+    } else {
+      res.render('member', { user: req.user, currentView: 'member' });
+    }
   });
 
 

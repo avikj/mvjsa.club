@@ -19,11 +19,10 @@ module.exports = function(passport){
       // already exists
       if (user) {
         console.log('User already exists with email: '+email);
-        return done(null, false, 'registered');
+        return done(null, false, 'registered'); 
       } else {
-        // if there is no user with that email
-        // create the user
-        var newUser = new User({
+        User.findOne({}, function(err, user) {
+          var newUser = new User({
             email: email,
             password: createHash(password),
             fname: req.body.fname,
@@ -32,17 +31,18 @@ module.exports = function(passport){
             dob: req.body.dob,
             phone: req.body.phone,
             sid: req.body.sid,
-            gender: req.body.gender
-        });
-
-        // save the user
-        newUser.save(function(err) {
-          if (err){
-            console.log('Error in Saving user: '+err);  
-            throw err;  
-          }
-          console.log('User Registration succesful');  
-          return done(null, newUser);
+            gender: req.body.gender,
+            isAdmin: user ? false : true // first user to sign up is admin
+          });
+          // save the user
+          newUser.save(function(err) {
+            if (err){
+              console.log('Error in Saving user: '+err);  
+              throw err;  
+            }
+            console.log('User Registration succesful');  
+            return done(null, newUser);
+          });
         });
       }
     });
