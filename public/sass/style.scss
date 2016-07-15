@@ -1,11 +1,5 @@
-/* sticky footer */
 body {
-  display: flex;
   min-height: 100vh;
-  flex-direction: column;
-}
-main {
-  flex: 1 0 auto;
 }
 
 h1 {
@@ -59,10 +53,44 @@ nav ul li {
 	}
 }
 
-
 /* new blog post form styles */
 #post-title-input {
 	font-weight: 300;
 	font-size: 3rem;
 	line-height: 1.5;
+}
+
+/* admin portal styles */
+.admin-wrapper {
+	.sidebar {
+		position: fixed;
+		height: 100vh;
+		padding: 0px;
+		ul {
+			width: 100%;
+			padding: 0px;
+			li, a {
+				width: 100%;
+				margin: 0px;
+			}
+			a {
+				padding: 20px;
+			}
+			.spacer {
+				padding: 30px;
+			}
+		}
+	}
+	.content-wrapper {
+		padding: 40px;
+	}
+}
+
+/* footer styles */
+footer {
+	z-index: 1000;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }

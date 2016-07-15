@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var isAdmin = require('../passport/isAdmin');
 var isAuthenticated = require('../passport/isAuthenticated');
 var BlogPost = require('../models/blogPost.js');
 module.exports = function(passport) {
@@ -27,20 +27,39 @@ module.exports = function(passport) {
 
   router.get('/member', isAuthenticated, function(req, res, next) {
     if(req.user.isAdmin){
-      BlogPost.find({ status: 'pending' })
+      res.redirect('/admin')
+    } else {
+      res.render('member', { user: req.user, currentView: 'member' });
+    }
+  });
+
+  router.get('/admin', isAdmin, function(req, res, next) {
+    res.redirect('/admin/review_posts');
+  })
+
+  router.get('/admin/review_posts', isAdmin, function(req, res, next) {
+    BlogPost.find({ status: 'pending' })
       .populate('author')
       .exec(function(err, pendingBlogPosts) {
         if(err) {
           console.error(err);
           return res.sendStatus(520);
         }
-        res.render('admin', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts });
+        res.render('admin', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts, state: 'review_posts' });
       });
-    } else {
-      res.render('member', { user: req.user, currentView: 'member' });
-    }
   });
 
+  router.get('/admin/manage_points', isAdmin, function(req, res, next) {
+    BlogPost.find({ status: 'pending' })
+      .populate('author')
+      .exec(function(err, pendingBlogPosts) {
+        if(err) {
+          console.error(err);
+          return res.sendStatus(520);
+        }
+        res.render('admin', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts, state: 'manage_points' });
+      });
+  });
 
   /* Handle Login POST */
   router.post('/login', function(req, res, next) {
