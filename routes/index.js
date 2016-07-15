@@ -32,35 +32,7 @@ module.exports = function(passport) {
       res.render('member', { user: req.user, currentView: 'member' });
     }
   });
-
-  router.get('/admin', isAdmin, function(req, res, next) {
-    res.redirect('/admin/review_posts');
-  })
-
-  router.get('/admin/review_posts', isAdmin, function(req, res, next) {
-    BlogPost.find({ status: 'pending' })
-      .populate('author')
-      .exec(function(err, pendingBlogPosts) {
-        if(err) {
-          console.error(err);
-          return res.sendStatus(520);
-        }
-        res.render('admin', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts, state: 'review_posts' });
-      });
-  });
-
-  router.get('/admin/manage_points', isAdmin, function(req, res, next) {
-    BlogPost.find({ status: 'pending' })
-      .populate('author')
-      .exec(function(err, pendingBlogPosts) {
-        if(err) {
-          console.error(err);
-          return res.sendStatus(520);
-        }
-        res.render('admin', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts, state: 'manage_points' });
-      });
-  });
-
+  
   /* Handle Login POST */
   router.post('/login', function(req, res, next) {
     passport.authenticate('login', function(err, user, info) {

@@ -16,8 +16,10 @@ var User = require('./models/user');
 
 var routes = require('./routes/index')(passport);
 var blogRoutes = require('./routes/blog');
+var adminRoutes = require('./routes/admin');
 
 var configurePassport = require('./passport/configure');
+var isAdmin = require('./passport/isAdmin');
 
 var app = express();
 
@@ -56,6 +58,7 @@ configurePassport(passport);
 
 app.use('/', routes);
 app.use('/blog',blogRoutes);
+app.use('/admin', isAdmin, adminRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
