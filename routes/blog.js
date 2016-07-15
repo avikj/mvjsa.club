@@ -21,7 +21,7 @@ router.post('/new', isAuthenticated, function(req, res, next) {
   var newBlogPost = new BlogPost({
     title: req.body.postTitle,
     body: req.body.postBody,
-    createdAt: Date.now(),
+    createdAt: new Date(),
     author: req.user._id,
     comments: [],
     status: 'pending'
@@ -51,7 +51,7 @@ router.get('/pending/:postId', isAdmin, function(req, res, next) {
 });
 
 router.post('/pending/:postId/accept', isAdmin, function(req, res, next) {
-  BlogPost.update({ _id: req.params.postId }, { $set: { status: 'accepted' } }, function(err) {
+  BlogPost.update({ _id: req.params.postId }, { $set: { status: 'accepted', publishedAt: new Date() } }, function(err) {
     res.redirect('/member');
   });
 });
