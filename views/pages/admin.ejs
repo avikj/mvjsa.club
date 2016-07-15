@@ -1,19 +1,21 @@
 <% include ../partials/header %>
-<h2 class="row">Blog Posts Pending Review</h2>
-<div class="row">
-	<% if(pendingBlogPosts.length > 0) { %>
-		<% pendingBlogPosts.forEach(function(blogPost, index){ %>
-		  <a href="/blog/pending/<%= blogPost._id %>" class="blog-post-link">
-		  	<div class="card col m5 <%= index%2==1 ? 'offset-m2' : '' %> s12 hoverable waves-effect valign-wrapper">
-			  	<div class="card-content valign">
-				    <h3 class="card-title post-title black-text"><%= blogPost.title %></h3>
-				    <p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
-				   </div>
-			  </div>
-		  </a>
-		<% }); %>
-	<% } else { %>
-		<p class="flow-text">Nothing to show.</p>
-	<% } %>
+<div class="content-wrapper container">
+	<h2 class="row">Blog Posts Pending Review</h2>
+	<div class="row">
+		<% if(pendingBlogPosts.length > 0) { %>
+			<% pendingBlogPosts.forEach(function(blogPost, index){ %>
+			  <a href="/blog/pending/<%= blogPost._id %>" class="blog-post-link">
+			  	<div class="card col m5 <%= index%2==1 ? 'offset-m2' : '' %> s12 hoverable waves-effect valign-wrapper">
+				  	<div class="card-content valign">
+					    <h3 class="card-title post-title black-text"><%= blogPost.title %></h3>
+					    <p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
+					   </div>
+				  </div>
+			  </a>
+			<% }); %>
+		<% } else { %>
+			<p class="flow-text">Nothing to show.</p>
+		<% } %>
+	</div>
 </div>
 <% include ../partials/footer %>
