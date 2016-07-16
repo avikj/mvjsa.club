@@ -368,6 +368,7 @@ $(document).ready(function(){
 		}, function(data) {
 			if(data == 'OK') {
 				window.location.reload();
+				$('#new-event-form').closeModal();
 			} else {
 				Materialize.toast('Error creating event.', 2000);
 			}

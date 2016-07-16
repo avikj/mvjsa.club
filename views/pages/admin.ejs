@@ -34,17 +34,20 @@
 			<div class="row">
 				<div class="col m6">
 					<h2>Events</h2>
+					<a href="#new-event-form" class="btn btn-floating btn-large waves-effect modal-trigger">
+						<i class="material-icons">add</i>
+					</a>
+					<br><br>
 					<% events.forEach(function(event) { %>
 						<div class="card-panel event-link">
 							<span class="flow-text event-name"><%= event.name %></span>
 							<span class="event-type">(<%= event.getType() %>)</span>
 						</div>
 					<% }); %>
-					<a href="#new-event-form" class="btn btn-floating btn-large waves-effect modal-trigger">
-						<i class="material-icons">add</i>
-					</a>
 				</div>
 			</div>
+
+			<!-- NEW EVENT MODAL -->
 			<form id="new-event-form" class="modal">
 		    <div class="modal-content">
 		      <h4>New Event</h4>
@@ -64,7 +67,7 @@
 		      </div>
 		    </div>
 		    <div class="modal-footer">
-		      <button type="submit" class="modal-action modal-close waves-effect waves-light btn-flat">SUBMIT <i class="material-icons right">send</i></button>
+		      <button type="submit" class="modal-action waves-effect waves-light btn-flat">SUBMIT <i class="material-icons right">send</i></button>
 		    </div>
 		  </form>
 		<% } %>
