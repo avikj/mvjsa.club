@@ -12,7 +12,7 @@
 		</ul>
 	</nav>
 	<div class="content-wrapper col m10 offset-m2">
-		<% if(state == 'review_posts') { %>
+		<% if(state == 'review_posts') { %> <%# REVIEW POSTS VIEW %>
 			<h2 class="row">Blog Posts Pending Review</h2>
 			<div class="row">
 				<% if(pendingBlogPosts.length > 0) { %>
@@ -30,8 +30,43 @@
 					<p class="flow-text">Nothing to show.</p>
 				<% } %>
 			</div>
-		<% } else { %>
-
+		<% } else { %> <%# MANAGE POINTS VIEW %>
+			<div class="row">
+				<div class="col m6">
+					<h2>Events</h2>
+					<% events.forEach(function(event) { %>
+						<div class="card-panel event-link">
+							<span class="flow-text event-name"><%= event.name %></span>
+							<span class="event-type">(<%= event.getType() %>)</span>
+						</div>
+					<% }); %>
+					<a href="#new-event-form" class="btn btn-floating btn-large waves-effect modal-trigger">
+						<i class="material-icons">add</i>
+					</a>
+				</div>
+			</div>
+			<form id="new-event-form" class="modal">
+		    <div class="modal-content">
+		      <h4>New Event</h4>
+		      <div class="row">
+		      	<div class="input-field col m12">
+		      		<label for="event-name">Event Name</label>
+		      		<input type="text" placeholder="First Meeting" id="event-name" name="event-name">
+		      	</div>
+		      	<div class="input-field col m12">
+		      		<select id="event-type">
+		      			<option value="meeting">Meeting</option>
+		      			<option value="speaker">Speaker</option>
+		      			<option value="conference">Conference</option>
+		      		</select>
+		      		<label for="event-type">Event Type</label>
+		      	</div>
+		      </div>
+		    </div>
+		    <div class="modal-footer">
+		      <button type="submit" class="modal-action modal-close waves-effect waves-light btn-flat">SUBMIT <i class="material-icons right">send</i></button>
+		    </div>
+		  </form>
 		<% } %>
 	</div>
 </div>

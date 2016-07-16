@@ -14,9 +14,12 @@ h3 {
 	font-weight: 300;
 	font-size: 2em;
 }
-
+/* navbar styles */
 nav ul li {
-	font-weight: 200;
+	font-weight: 300;
+}
+.brand-logo {
+	font-weight: 300;
 }
 /* blog styles */
 .blog-post-link {
@@ -80,9 +83,21 @@ nav ul li {
 				padding: 30px;
 			}
 		}
+		.event-link {
+			.event-name {
+				float: left;
+			}
+			.event-type {
+				float: right;
+			}
+		}
 	}
 	.content-wrapper {
 		padding: 40px;
+	}
+
+	#new-event-modal {
+
 	}
 }
 

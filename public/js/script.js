@@ -353,4 +353,24 @@ $(document).ready(function(){
 		$("body").css("cursor", "auto");
 		return false;
 	});
+
+	$('.modal-trigger').leanModal();
+	$('#new-event-form').submit(function(evt) {
+		evt.preventDefault();
+		var eventName = $('#event-name').val();
+		var eventType = $('#event-type').val();
+		if(eventName == '') {
+			return Materialize.toast('Please enter an event name', 2000);
+		}
+		$.post('/admin/manage_points/new_event', {
+			name: eventName,
+			type: eventType
+		}, function(data) {
+			if(data == 'OK') {
+				window.location.reload();
+			} else {
+				Materialize.toast('Error creating event.', 2000);
+			}
+		});
+	});
 });
