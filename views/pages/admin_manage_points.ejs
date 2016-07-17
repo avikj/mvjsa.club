@@ -1,0 +1,61 @@
+<% include ../partials/header %>
+<div class="row admin-wrapper">
+	<% var state = 'manage_points' %>
+	<% include ../partials/admin-sidebar.ejs %>
+	<div class="content-wrapper col m10 offset-m2">
+		<div class="row">
+			<div class="col m6">
+				<h2>Events</h2>
+				<a href="#new-event-form" class="btn btn-floating btn-large waves-effect modal-trigger">
+					<i class="material-icons">add</i>
+				</a>
+				<br><br>
+				<% events.forEach(function(event) { %>
+					<div class="card event-link">
+						<div class="card-content">
+							<span class="card-title" event-name"><%= event.name %></span>
+							<p class="event-type">(<%= event.getType() %>)</p>
+						</div>
+						<div class="card-action row">
+							<a href="#delete-event-modal-<%= event._id %>" class="btn btn-flat waves-effect waves-light red lighten-2 white-text col m3 offset-m9 z-depth-0 modal-trigger">DELETE</a>
+						</div>
+					</div>
+					<div id="delete-event-modal-<%= event._id %>" class="modal delete-event-modal">
+						<div class="modal-content">
+							Are you sure you want to delete event "<%= event.name %>"?
+						</div>
+						<div class="modal-footer">
+							<button data-eventId="<%= event._id %>" class="modal-action waves-effect waves-light btn-flat delete-event-button">DELETE</button>
+							<button class="modal-action waves-effect waves-light btn-flat modal-close">BACK</button>
+						</div>
+					</div>
+				<% }); %>
+			</div>
+		</div>
+
+		<!-- NEW EVENT MODAL -->
+		<form id="new-event-form" class="modal">
+	    <div class="modal-content">
+	      <h4>New Event</h4>
+	      <div class="row">
+	      	<div class="input-field col m12">
+	      		<label for="event-name">Event Name</label>
+	      		<input type="text" placeholder="First Meeting" id="event-name" name="event-name">
+	      	</div>
+	      	<div class="input-field col m12">
+	      		<select id="event-type">
+	      			<option value="meeting">Meeting</option>
+	      			<option value="speaker">Speaker</option>
+	      			<option value="conference">Conference</option>
+	      		</select>
+	      		<label for="event-type">Event Type</label>
+	      	</div>
+	      </div>
+	    </div>
+	    <div class="modal-footer">
+	      <button type="submit" class="modal-action waves-effect waves-light btn-flat">SUBMIT <i class="material-icons right">send</i></button>
+	    </div>
+	  </form>
+	</div>
+</div>
+<% include ../partials/footer %>

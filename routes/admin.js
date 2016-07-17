@@ -15,7 +15,7 @@ router.get('/review_posts', function(req, res, next) {
         console.error(err);
         return res.sendStatus(520);
       }
-      res.render('admin', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts, state: 'review_posts' });
+      res.render('admin_review_posts', { user: req.user, currentView: 'member', pendingBlogPosts: pendingBlogPosts });
     });
 });
 
@@ -28,7 +28,7 @@ router.get('/manage_points', function(req, res, next) {
         console.error(err);
         return res.sendStatus(520);
       }
-      res.render('admin', { user: req.user, currentView: 'member', events: events, state: 'manage_points' });
+      res.render('admin_manage_points', { user: req.user, currentView: 'member', events: events });
     });
 });
 
