@@ -28,7 +28,11 @@ $(document).ready(function(){
       postTitle: title,
       postBody: body
     }, function(data) {
-      alert(data);
+      if(data == 'OK') {
+        window.location.replace('/blog');
+      } else {
+        Materialize.toast('Could not submit post.', 2000);
+      }
     });
   });
 });

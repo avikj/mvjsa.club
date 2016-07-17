@@ -1,16 +1,6 @@
 <% include ../partials/header %>
 <div class="row admin-wrapper">
-	<nav class="sidebar col m2 z-depth-1 valign-wrapper white">
-		<ul class="valign">
-			<li class="<%= state == 'review_posts' ? 'active' : '' %>">
-				<a href="/admin/review_posts" class="black-text flow-text">Pending Posts</a>
-			</li>
-			<li class="<%= state == 'manage_points' ? 'active' : '' %>">
-				<a href="/admin/manage_points" class="black-text flow-text">Activity Points</a>
-			</li>
-			<li class="spacer"></li>
-		</ul>
-	</nav>
+	<% include ../partials/admin-sidebar.ejs %>
 	<div class="content-wrapper col m10 offset-m2">
 		<% if(state == 'review_posts') { %> <%# REVIEW POSTS VIEW %>
 			<h2 class="row">Blog Posts Pending Review</h2>
@@ -39,9 +29,23 @@
 					</a>
 					<br><br>
 					<% events.forEach(function(event) { %>
-						<div class="card-panel event-link">
-							<span class="flow-text event-name"><%= event.name %></span>
-							<span class="event-type">(<%= event.getType() %>)</span>
+						<div class="card event-link">
+							<div class="card-content">
+								<span class="card-title" event-name"><%= event.name %></span>
+								<p class="event-type">(<%= event.getType() %>)</p>
+							</div>
+							<div class="card-action row">
+								<a href="#delete-event-modal-<%= event._id %>" class="btn btn-flat waves-effect waves-light red lighten-2 white-text col m3 offset-m9 z-depth-0 modal-trigger">DELETE</a>
+							</div>
+						</div>
+						<div id="delete-event-modal-<%= event._id %>" class="modal delete-event-modal">
+							<div class="modal-content">
+								Are you sure you want to delete event "<%= event.name %>"?
+							</div>
+							<div class="modal-footer">
+								<button data-eventId="<%= event._id %>" class="modal-action waves-effect waves-light btn-flat delete-event-button">DELETE</button>
+								<button class="modal-action waves-effect waves-light btn-flat modal-close">BACK</button>
+							</div>
 						</div>
 					<% }); %>
 				</div>

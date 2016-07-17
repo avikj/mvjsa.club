@@ -374,4 +374,16 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	$('.delete-event-button').click(function(evt) {
+		var eventId = evt.target.getAttribute('data-eventId');
+		$.post('/admin/event/'+eventId+'/delete', {}, function(data) {
+			if(data == 'OK') {
+				$('#delete-event-modal-'+eventId).closeModal();
+				window.location.reload();
+			} else {
+				Materialize.toast('Could not delete event.');
+			}
+		});
+	})
 });

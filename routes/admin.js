@@ -47,4 +47,16 @@ router.post('/manage_points/new_event', function(req, res, next) {
   });
 });
 
+router.post('/event/:eventId/delete', function(req,res, next) {
+  Event
+    .find({ _id: req.params.eventId })
+    .remove(function(err) {
+      if(err) {
+        res.sendStatus(520);
+      } else {
+        res.sendStatus(200);
+      }
+  });
+});
+
 module.exports = router;
