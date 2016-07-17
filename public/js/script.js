@@ -145,24 +145,24 @@ $(document).ready(function(){
 						window.location.reload();
 					}
 					else if(data=="nomatch") {
-						formalert = "<span class='materialize-red-text text-lighten-2'>Email and/or password is incorrect.</span>";
+						formalert = "Email and/or password is incorrect.";
 						$("input[type=submit]").removeAttr("disabled");
 					}
 					else if(data=="unpaid") {
-						formalert = "<span class='materialize-red-text text-lighten-2'>Account not activated yet. Please pay $5.00 membership fee at the next meeting.</span>";
+						formalert = "Account not activated yet. Please pay $5.00 membership fee at the next meeting.";
 						$("input[type=submit]").removeAttr("disabled");
 					}
 					else if(data=="failure") {
-						formalert = "<span class='materialize-red-text text-lighten-2'>Please fill in both email and password correctly.</span>";
+						formalert = "Please fill in both email and password correctly.";
 						$("input[type=submit]").removeAttr("disabled");
 					}
 						
-					$("#form-alert").html(formalert);
+					Materialize.toast(formalert);
 				}
 			);
 		}
 		else {
-			$("#form-alert").html("<span class='materialize-red-text text-lighten-2'>Please fill in both email and password correctly.</span>");
+			Materialize.toast("Please fill in both email and password correctly.");
 			$("input[type=submit]").removeAttr("disabled");
 		}
 		
