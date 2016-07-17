@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+<div class="row admin-wrapper">
+	<% var state = 'manage_points' %>
+	<% include ../partials/admin_sidebar.ejs %>
+	<div class="content-wrapper col m10 offset-m2">
+		<h2 class="row">Edit Event</h2>
+		<form action="/admin/event/<%= event._id %>/edit" id="edit-event-form" class="row">
+			<div class="col m4">
+				<div class="input-field col m12 row">
+      		<label for="event-name">Event Name</label>
+      		<input type="text" value="<%= event.name %>" id="event-name" name="event-name">
+      	</div>
+      	<div class="input-field col m12">
+      		<select id="event-type">
+      			<option value="meeting" <%= event.type == 'meeting' ? 'selected' : '' %>>Meeting</option>
+      			<option value="speaker" <%= event.type == 'speaker' ? 'selected' : '' %>>Speaker</option>
+      			<option value="conference" <%= event.type == 'conference' ? 'selected' : '' %>>Conference</option>
+      		</select>
+      		<label for="event-type">Event Type</label>
+      	</div>
+			</div>
+			<div class="col m6 offset-m2 row">
+				<h5>Who attended?</h5>
+				<% members.forEach(function(member) { %>
+					<div class="input-field col m6">
+						<input id="did-attend-<%= member._id %>" data-memberId="<%= member._id %>" class="did-attend-checkbox" type="checkbox" <%= member.didAttend ? 'checked' : '' %>>
+						<label for="did-attend-<%= member._id %>"><%= member.lname %>, <%= member.fname %></label>
+					</div>
+				<% }); %>
+			</div>
+			<button type="submit" class="waves-effect waves-light btn col m12">SUBMIT <i class="material-icons right">send</i></button>
+		</form>
+	</div>
+</div>
+<% include ../partials/footer %>

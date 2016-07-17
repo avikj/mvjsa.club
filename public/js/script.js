@@ -385,5 +385,32 @@ $(document).ready(function(){
 				Materialize.toast('Could not delete event.');
 			}
 		});
-	})
+	});
+
+	$('#edit-event-form').submit(function(evt) {
+		evt.preventDefault();
+		var eventName = $('#event-name').val();
+		var eventType = $('#event-type').val();
+		if(eventName == '') {
+			return Materialize.toast('Please enter an event name.');
+		}
+		var attendees = [];
+		$('.did-attend-checkbox').each(function() {
+			if(this.checked) {
+				attendees.push($(this).attr('data-memberId'));
+			}
+		});
+		var action = $(this).attr('action');
+		$.post(action, {
+			name: eventName,
+			type: eventType,
+			attendees: attendees
+		}, function(data) {
+			if(data == 'OK') {
+				window.location.replace('/admin/manage_points');
+			} else {
+				Materialize.toast('Could not update event data.');
+			}
+		});
+	});
 });

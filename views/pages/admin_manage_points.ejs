@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 <div class="row admin-wrapper">
 	<% var state = 'manage_points' %>
-	<% include ../partials/admin-sidebar.ejs %>
+	<% include ../partials/admin_sidebar.ejs %>
 	<div class="content-wrapper col m10 offset-m2">
 		<div class="row">
 			<div class="col m6">
@@ -16,8 +16,9 @@
 							<span class="card-title" event-name"><%= event.name %></span>
 							<p class="event-type">(<%= event.getType() %>)</p>
 						</div>
-						<div class="card-action row">
-							<a href="#delete-event-modal-<%= event._id %>" class="btn btn-flat waves-effect waves-light red lighten-2 white-text col m3 offset-m9 z-depth-0 modal-trigger">DELETE</a>
+						<div class="card-action">
+							<a href="/admin/event/<%= event._id %>/edit" class="btn btn-flat waves-effect waves-light blue lighten-2 white-text z-depth-0 modal-trigger">EDIT</a>
+							<a href="#delete-event-modal-<%= event._id %>" class="btn btn-flat waves-effect waves-light red lighten-2 white-text z-depth-0 modal-trigger">DELETE</a>
 						</div>
 					</div>
 					<div id="delete-event-modal-<%= event._id %>" class="modal delete-event-modal">
