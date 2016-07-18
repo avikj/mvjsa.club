@@ -85,7 +85,7 @@ $(document).ready(function(){
 				function(data) {
 					var formalert;
 					if(data=="success") {
-						window.location.replace("/members");
+						window.location.replace("/member");
 					}
 					else if(data=="registered") {
 						formalert = "<span class='materialize-red-text text-lighten-2'>Member already registered.</span>";
