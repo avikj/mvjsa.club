@@ -14,8 +14,10 @@ html, body {
     -ms-filter: blur(5px);*/
     height: 200vh;
 }
-.splash .container {
-	margin-top: 30vh;
+@media(min-height: 601) {
+  .splash .container {
+  	margin-top: 30vh;
+  }
 }
 .btn-wrapper {
 	margin-top: 3px;
