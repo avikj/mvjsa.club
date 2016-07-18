@@ -18,29 +18,75 @@
 <header class="site-header">
   <div class="header-wrapper">
     <div class="navbar-fixed">
-      <ul id="account-dropdown" class="dropdown-content">
-        <li><a href="/logout">Logout</a></li>
-      </ul>
       <nav class="site-nav white-text">
-        <div class="nav-wrapper">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <div class="nav-wrapper hide-on-med-and-down">
           <div class="container">
             <a href="/" class="brand-logo">MV JSA<!--<img src="/img/mvjsa_logo.png" alt="MV JSA"/>--></a>
             <ul id="nav-mobile" class="menu right hide-on-med-and-down">
-              <li class="menu-item waves-effect <%= currentView == 'index' ? 'active' : '' %>"><a href="/">Home</a></li>
-              <li class="menu-item waves-effect <%= currentView == 'blog' ? 'active' : '' %>"><a href="/blog">Blog</a></li>
-              <li class="menu-item waves-effect <%= currentView == 'about' ? 'active' : '' %>"><a href="/about">About</a></li>
+              <li class="waves-effect <%= currentView == 'index' ? 'active' : '' %>"><a href="/">Home</a></li>
+              <li class="waves-effect <%= currentView == 'blog' ? 'active' : '' %>"><a href="/blog">Blog</a></li>
+              <li class="waves-effect <%= currentView == 'about' ? 'active' : '' %>"><a href="/about">About</a></li>
               <% if(user) { %>
-                <li class="menu-item waves-effect <%= currentView == 'login' ? 'active' : '' %>"><a href="/member">
+                <li class="waves-effect <%= currentView == 'member' ? 'active' : '' %>"><a href="/member">
                   <%= user.isAdmin ? 'Admin' : 'Member' %> Portal
                 </a></li>
-                <li class="menu-item waves-effect dropdown-button" data-activates="account-dropdown"><a href="#"><%= user.fname %> <%= user.lname %></a></li>
+                <li class="waves-effect dropdown-button" data-activates="account-dropdown"><a href="#"><%= user.fname %> <%= user.lname %></a></li>
+                <ul id="account-dropdown" class="dropdown-content">
+                  <li><a href="/logout">Logout</a></li>
+                </ul>
               <% } else {%>
-                <li class="menu-item waves-effect <%= currentView == 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
-                <li class="menu-item waves-effect <%= currentView == 'join' ? 'active' : '' %>"><a href="/join">Join</a></li>
+                <li class="waves-effect <%= currentView == 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
+                <li class="waves-effect <%= currentView == 'join' ? 'active' : '' %>"><a href="/join">Join</a></li>
               <% } %>
             </ul>
           </div>
         </div>
+        <ul id="slide-out" class="side-nav row">
+          <li class="side-nav-item waves-effect col s12 <%= currentView == 'index' ? 'active' : '' %>"><a href="/">Home</a></li>
+          <li class="side-nav-item waves-effect col s12 <%= currentView == 'blog' ? 'active' : '' %>"><a href="/blog">Blog</a></li>
+          <li class="side-nav-item waves-effect col s12 <%= currentView == 'about' ? 'active' : '' %>"><a href="/about">About</a></li>
+          <% if(user) { %>
+            <% if(user.isAdmin) { %>
+              <li class="col s12">
+                <ul class="collapsible collapsible-accordion">
+                  <li>
+                    <a class="collapsible-header side-nav-item waves-effect <%= currentView == 'member' ? 'active' : '' %>" href="#">Admin Portal</a>
+                    <div class="collapsible-body">
+                      <ul>
+                        <li>
+                          <a href="/admin/review_posts" class="red-text text-lighten-2 waves-effect">Pending Posts</a>
+                        </li>
+                        <li>
+                          <a href="/admin/manage_points" class="red-text text-lighten-2 waves-effect">Activity Points</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            <% } else { %>
+              <li class="side-nav-item waves-effect col s12 <%= currentView == 'member' ? 'active' : '' %>"><a href="/member">
+                Member Portal
+              </a></li>
+            <% } %>
+            <li class="col s12">
+              <ul class="collapsible collapsible-accordion">
+                <li>
+                  <a class="collapsible-header side-nav-item waves-effect" href="#"><%= user.fname %> <%= user.lname %></a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li><a class="waves-effect red-text text-lighten-2" href="/logout">Logout</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          <% } else {%>
+            <li class="side-nav-item waves-effect col s12 <%= currentView == 'login' ? 'active' : '' %>"><a href="/login">Login</a></li>
+            <li class="side-nav-item waves-effect col s12 <%= currentView == 'join' ? 'active' : '' %>"><a href="/join">Join</a></li>
+          <% } %>
+        </ul>
       </nav>
     </div>
   </div>
