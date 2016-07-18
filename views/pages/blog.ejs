@@ -1,27 +1,29 @@
 <% include ../partials/header %>
-<div class="container">
-	<h1>MVJSA Blog</h1>
-	<div class="row">
-		<% blogPosts.forEach(function(blogPost, index){ %>
-		  <a href="/blog/<%= blogPost._id %>" class="blog-post-link">
-		  	<div class="card col m5 <%= index%2==1 ? 'offset-m2' : '' %> s12 hoverable waves-effect valign-wrapper">
-			  	<div class="card-content valign">
-				    <h3 class="card-title post-title black-text"><%= blogPost.title %></h3>
-				    <div class="author-date-wrapper">
-				    	<p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
-				    	<p class="black-text date"><%= formatDate(blogPost.publishedAt) %></p>
-				    </div>
-				   </div>
-			  </div>
-		  </a>
-		<% }); %>
-		<% if(user) { %>
-		<div class="add-post-button-wrapper col m5 <%= blogPosts.length%2==1 ? 'offset-m2' : '' %> valign-wrapper">
+<div class="content-wrapper">
+	<div class="container">
+		<h1>MVJSA Blog</h1>
+		<div class="row">
+			<% blogPosts.forEach(function(blogPost, index){ %>
+			  <a href="/blog/<%= blogPost._id %>" class="blog-post-link">
+			  	<div class="card col m5 <%= index%2==1 ? 'offset-m2' : '' %> s12 hoverable waves-effect valign-wrapper">
+				  	<div class="card-content valign">
+					    <h3 class="card-title post-title black-text"><%= blogPost.title %></h3>
+					    <div class="author-date-wrapper">
+					    	<p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
+					    	<p class="black-text date"><%= formatDate(blogPost.publishedAt) %></p>
+					    </div>
+					   </div>
+				  </div>
+			  </a>
+			<% }); %>
+		</div>
+	</div>
+	<% if(user) { %>
+		<div class="fixed-action-btn" style="bottom: 90px; right: 70px">
 			<a href="/blog/new" class="center-align btn-floating btn-large red waves-effect valign tooltipped" data-position="left" data-delay="50" data-tooltip="New Blog Post">
 	      <i class="large material-icons">mode_edit</i>
 	    </a>
-	   </div>
-	  <% } %>
-	</div>
+	  </div>
+	<% } %>
 </div>
 <% include ../partials/footer %>

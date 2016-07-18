@@ -1,6 +1,7 @@
 html {
   min-height: 100vh;
-  padding-bottom: 5vh
+  padding-bottom: 5vh;
+  overflow: hidden;
 }
 
 h1 {
@@ -14,6 +15,12 @@ h2 {
 h3 {
 	font-weight: 300;
 	font-size: 2em;
+}
+
+.content-wrapper {
+	overflow: scroll;
+	height: 100vh;
+	padding-bottom: 5vh;
 }
 
 #login-center-wrapper {
@@ -42,12 +49,6 @@ nav ul li {
 	}
 	.date {
 		float: bottom;
-	}
-}
-.add-post-button-wrapper {
-	height: 30vh;
-	.btn {
-		width: 10%
 	}
 }
 
@@ -105,10 +106,17 @@ nav ul li {
 	}
 	.content-wrapper {
 		padding: 40px;
+		padding-bottom: 15vh;
 	}
-
-	#new-event-modal {
-
+	#did-attend-wrapper {
+		z-index: -100;
+		height: 50vh;
+		box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+		overflow: scroll;
+		padding-bottom: 10px
+	}
+	.did-attend-checkbox {
+		z-index: -99;
 	}
 }
 

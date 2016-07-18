@@ -21,12 +21,14 @@
 			</div>
 			<div class="col m6 offset-m2 row">
 				<h5>Who attended?</h5>
-				<% members.forEach(function(member) { %>
-					<div class="input-field col m6">
-						<input id="did-attend-<%= member._id %>" data-memberId="<%= member._id %>" class="did-attend-checkbox" type="checkbox" <%= member.didAttend ? 'checked' : '' %>>
-						<label for="did-attend-<%= member._id %>"><%= member.lname %>, <%= member.fname %></label>
-					</div>
-				<% }); %>
+				<div id="did-attend-wrapper" class="col m12 row">
+					<% members.forEach(function(member) { %>
+						<div class="input-field col m6">
+							<input id="did-attend-<%= member._id %>" data-memberId="<%= member._id %>" class="did-attend-checkbox" type="checkbox" <%= member.didAttend ? 'checked' : '' %>>
+							<label for="did-attend-<%= member._id %>"><%= member.lname %>, <%= member.fname %></label>
+						</div>
+					<% }); %>
+				</div>
 			</div>
 			<button type="submit" class="waves-effect waves-light btn col m12">SUBMIT <i class="material-icons right">send</i></button>
 		</form>
