@@ -1,4 +1,5 @@
 <% include ../partials/header %>
+<div class="content-wrapper">
 <div class="container">
   <div class="blog-post z-depth-2">
     <h2 class="post-title">
@@ -21,13 +22,14 @@
     <% if(blogPost.status == 'pending') { %>
       <div class="row">
         <form method="POST" action="/blog/pending/<%= blogPost._id %>/accept" class="col m6 row">
-          <button type="submit" class="btn btn-large green lighten-2 col m12">ACCEPT</button>
+          <button type="submit" class="btn btn-large waves-effect blue lighten-2 col m12">ACCEPT</button>
         </form>
         <form method="POST" action="/blog/pending/<%= blogPost._id %>/reject" class="col m6 row">
-          <button type="submit" class="btn btn-large red lighten-2 col m12">REJECT</button>
+          <button type="submit" class="btn btn-large waves-effect red lighten-2 col m12">REJECT</button>
         </form>
       </div>
     <% } %>
   </div>
+</div>
 </div>
 <% include ../partials/footer %>

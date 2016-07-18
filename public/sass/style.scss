@@ -1,9 +1,16 @@
+@import "components/color";
+@import "components/variables";
 html {
   min-height: 100vh;
   padding-bottom: 5vh;
   overflow: hidden;
 }
-
+.primary-color {
+	color: $primary-color;
+}
+.primary-color-background {
+	background-color: $primary-color;
+}
 h1 {
 	font-weight: 400;
 	font-size: 3em;
@@ -20,13 +27,14 @@ h3 {
 .content-wrapper {
 	overflow: scroll;
 	height: 100vh;
-	padding-bottom: 5vh;
+	padding-bottom: 15vh;
 }
 
+/* login styles */
 #login-center-wrapper {
-	min-height: 75vh;
-	.content-wrapper {
+	.login-panel {
 		padding: 3vw;
+		margin-bottom: 5vw;
 	}
 }
 
