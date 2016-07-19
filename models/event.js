@@ -15,6 +15,16 @@ var eventSchema = new mongoose.Schema({
   }]
 });
 
+eventSchema
+  .virtual('maxPoints')
+  .get(function() {
+    switch(this.type) {
+      case 'meeting': return 5;
+      case 'conference': return 15;
+      case 'speaker': return 10;
+    }
+  });
+
 eventSchema.methods.getType = function() {
   switch(this.type) {
     case 'meeting':

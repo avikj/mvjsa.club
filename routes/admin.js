@@ -3,6 +3,7 @@ var router = express.Router();
 var BlogPost = require('../models/blogPost');
 var Event = require('../models/event');
 var User = require('../models/user');
+var async = require('async');
 
 router.get('/', function(req, res, next) {
   res.redirect('/admin/review_posts');
@@ -25,11 +26,27 @@ router.get('/manage_points', function(req, res, next) {
     .populate('attendees')
     .sort({ _id: -1 })
     .exec(function(err, events) {
-      if(err) {
-        console.error(err);
-        return res.sendStatus(520);
-      }
-      res.render('admin_manage_points', { user: req.user, currentView: 'member', events: events});
+      User.find({}, function(err, users) {
+        if(err) {
+          console.error(err);
+          return res.sendStatus(520);
+        }
+        var asyncTasks = [];
+        users.forEach(function(user) {
+          asyncTasks.push(function(callback) {
+            user.getActivityPoints(function(err, result) {
+              user.activityPoints = result;
+              callback();
+            });
+          });
+        });
+        async.parallel(asyncTasks, function() {
+          users.sort(function(a, b) {
+            return b.activityPoints - a.activityPoints;
+          });
+          res.render('admin_manage_points', { user: req.user, currentView: 'member', events: events, users: users });
+        });
+      }); 
     });
 });
 
@@ -78,9 +95,11 @@ router.get('/event/:eventId/edit', function(req, res, next) {
         });
         users.forEach(function(user) {
           user.didAttend = false;
+          user.points = 0;
           event.attendees.forEach(function(attendee) {
             if(user._id.toString() == attendee.user.toString()) {
               user.didAttend = true;
+              user.points = attendee.points;
             }
           });
         });
@@ -90,26 +109,28 @@ router.get('/event/:eventId/edit', function(req, res, next) {
 });
 
 router.post('/event/:eventId/edit', function(req, res, next) {
-  Event.update({ _id: req.params.eventId }, {
-    $set: {
-      name: req.body.name,
-      type: req.body.type,
-      attendees: req.body.attendees.map(function(user) {
-        return {
-          user: user,
-          points: 1
-        };
-      })
-    }
-  }, function(err, numAffected) {
+  Event.findById(req.params.eventId, function(err, event) {
     if(err) {
       console.error(err);
-      res.sendStatus(404);
-    } else if(numAffected == 0) {
-      res.sendStatus(404);
+      return res.sendStatus(520);
+    } 
+    if(event.type == 'meeting') {
+      event.attendees = req.body.attendees;
     } else {
-      res.sendStatus(200);
+      event.attendees = req.body.attendees.map(function(user) {
+        return {
+          user: user,
+          points: event.maxPoints
+        };
+      });
     }
+    event.save(function(err) {
+      if(err) {
+        res.sendStatus(520);
+      } else {
+        res.sendStatus(200);
+      }
+    });
   });
 });
 

@@ -157,7 +157,7 @@ $(document).ready(function(){
 						$("input[type=submit]").removeAttr("disabled");
 					}
 						
-					Materialize.toast(formalert);
+					Materialize.toast(formalert, 2000);
 				}
 			);
 		}
@@ -389,29 +389,38 @@ $(document).ready(function(){
 
 	$('#edit-event-form').submit(function(evt) {
 		evt.preventDefault();
-		var eventName = $('#event-name').val();
-		var eventType = $('#event-type').val();
-		if(eventName == '') {
-			return Materialize.toast('Please enter an event name.');
-		}
-		var attendees = [];
-		$('.did-attend-checkbox').each(function() {
-			if(this.checked) {
-				attendees.push($(this).attr('data-memberId'));
-			}
-		});
 		var action = $(this).attr('action');
-		$.post(action, {
-			name: eventName,
-			type: eventType,
-			attendees: attendees
-		}, function(data) {
+		var attendees = [];
+		if($('#edit-event-wrapper').attr('data-eventType') == 'meeting') {
+			$('.did-attend-number-field').each(function() {
+				if($(this).val() > 0) {
+					attendees.push({
+						user: $(this).attr('data-memberId'),
+						points: $(this).val()
+					});
+				}
+			});
+			$.post(action, {
+				attendees: attendees
+			}, editEventPostCallback);
+		} else {
+			$('.did-attend-checkbox').each(function() {
+				if(this.checked) {
+					attendees.push($(this).attr('data-memberId'));
+				}
+			});
+			$.post(action, {
+				attendees: attendees
+			}, editEventPostCallback);
+		}
+		
+		function editEventPostCallback(data) {
 			if(data == 'OK') {
 				window.location.replace('/admin/manage_points');
 			} else {
 				Materialize.toast('Could not update event data.');
 			}
-		});
+		}
 	});
 
   $(".button-collapse").sideNav();

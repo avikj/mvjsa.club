@@ -2,32 +2,27 @@
 <div class="row admin-wrapper">
 	<% var state = 'manage_points' %>
 	<% include ../partials/admin_sidebar.ejs %>
-	<div  id="edit-event-wrapper" class="content-wrapper col l10 offset-l2 m12">
+	<div  id="edit-event-wrapper" class="content-wrapper col l10 offset-l2 m12" data-eventType="<%= event.type %>">
 		<h2 class="row"><%= event.name %></h2>
 		<h5 class="row">Edit Members</h5>
 		<form action="/admin/event/<%= event._id %>/edit" id="edit-event-form" class="row">
-			<!--<div class="col l4">
-				<div class="input-field col l12 row">
-      		<label for="event-name">Event Name</label>
-      		<input type="text" value="<%= event.name %>" id="event-name" name="event-name">
-      	</div>
-      	<div class="input-field col l12">
-      		<select id="event-type">
-      			<option value="meeting" <%= event.type == 'meeting' ? 'selected' : '' %>>Meeting</option>
-      			<option value="speaker" <%= event.type == 'speaker' ? 'selected' : '' %>>Speaker</option>
-      			<option value="conference" <%= event.type == 'conference' ? 'selected' : '' %>>Conference</option>
-      		</select>
-      		<label for="event-type">Event Type</label>
-      	</div>
-			</div>-->
 			<div class="col l12 row">
-				<div id="did-attend-wrapper" class="col l12 row">
-					<% members.forEach(function(member) { %>
-						<div class="input-field col l6 m6 s12">
-							<input id="did-attend-<%= member._id %>" data-memberId="<%= member._id %>" class="did-attend-checkbox" type="checkbox" <%= member.didAttend ? 'checked' : '' %>>
-							<label for="did-attend-<%= member._id %>"><%= member.lname %>, <%= member.fname %></label>
-						</div>
-					<% }); %>
+				<div class="col l12 row internal-scroll-wrapper">
+					<% if(event.type == 'meeting') { %>
+						<% members.forEach(function(member) { %>
+							<div class="col l6 m6 s12 row">
+								<input class="col l2 did-attend-number-field" id="did-attend-<%= member._id %>" data-memberId="<%= member._id %>" type="number" value="<%= member.points %>" min="0" max="5">
+								<p class="col l10"><%= member.lname %>, <%= member.fname %></p>
+							</div>
+						<% }); %>
+					<% } else { %>
+						<% members.forEach(function(member) { %>
+							<div class="input-field col l6 m6 s12">
+								<input id="did-attend-<%= member._id %>" data-memberId="<%= member._id %>" class="did-attend-checkbox" type="checkbox" <%= member.didAttend ? 'checked' : '' %>>
+								<label for="did-attend-<%= member._id %>"><%= member.lname %>, <%= member.fname %></label>
+							</div>
+						<% }); %>
+					<% } %>
 				</div>
 			</div>
 			<button type="submit" class="waves-effect waves-light btn btn-large col l12">SUBMIT <i class="material-icons right">send</i></button>
