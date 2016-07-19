@@ -4,7 +4,9 @@ var BlogPost = require('../models/blogPost');
 var Event = require('../models/event');
 var User = require('../models/user');
 var async = require('async');
-
+var exec = require('child_process').exec;
+var config = require('../config');
+var path = require('path');
 router.get('/', function(req, res, next) {
   res.redirect('/admin/review_posts');
 })
@@ -131,6 +133,19 @@ router.post('/event/:eventId/edit', function(req, res, next) {
         res.sendStatus(200);
       }
     });
+  });
+});
+
+
+router.get('/userdata', function(req, res, next) {
+  var command = 'mongoexport --host localhost --db mvjsa --collection users --csv  --fields fname,lname,email,phone,sid,gender --out data.csv';
+  if(process.env.OPENSHIFT_MONGODB_DB_HOST)
+    command = 'mongoexport --host $OPENSHIFT_MONGODB_DB_HOST --username $OPENSHIFT_MONGODB_DB_USERNAME --password $OPENSHIFT_MONGODB_DB_PASSWORD --db mvjsa --collection users --csv  --fields fname,lname,email,phone,sid,gender --out data.csv';
+  exec(command, function(err, stdout, stderr) {
+    if(err) {
+      res.send(err);
+    }
+    res.sendFile(path.join(__dirname,'..', 'data.csv'));
   });
 });
 
