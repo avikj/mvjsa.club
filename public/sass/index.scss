@@ -1,7 +1,26 @@
 @import "components/color";
 @import "components/variables";
-html, body {
-	overflow: auto;
+.preloader-section {
+	position: fixed;
+	margin-top: -10vh;
+	height: 100vh;
+	width: 100vw;
+	z-index: 100000;
+	background: $primary-color;
+	.valign {
+		width: auto;
+		margin: auto;
+	}
+}
+.loading-label {
+	font-weight: 200;
+	top: 25%;
+	width: 100%;
+	text-align: center;
+}
+.preloader-wrapper {
+	width: auto;
+	margin: auto;
 }
 .parallax-container {
 	min-height: 100vh;
@@ -62,5 +81,7 @@ p.flow-text {
 		height: auto;
 		padding-bottom: 5vh;
 	}
-
+	.loading-label {
+		top: 20%;
+	}
 }

@@ -418,3 +418,9 @@ $(document).ready(function(){
   $('.parallax').parallax();
   new WOW().init();
 });
+$(window).on("load", function() {
+  $('.preloader-section').addClass('animated fadeOut');
+  $('.preloader-section').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+  	$('.preloader-section').css('display', 'none');
+  });
+});
