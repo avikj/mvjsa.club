@@ -74,6 +74,16 @@ nav ul li {
 		float: bottom;
 	}
 }
+#new-blog-post-btn {
+	bottom: 60px;
+	right: 60px;
+}
+@media (max-width: 600px) {
+	#new-blog-post-btn {
+		bottom: 50px;
+		right: 25px;
+	}
+}
 
 /* blog post styles */
 .blog-post {
