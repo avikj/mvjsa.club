@@ -33,11 +33,11 @@
     -ms-filter: blur(5px);*/
     height: 200vh;
 }
-.splash .container {
+#section-splash .container {
 	margin-top: 20vh;
 }
 @media (min-width: 601px) {
-  .splash .container {
+  #section-splash .container {
   	margin-top: 30vh;
   }
 }
@@ -83,5 +83,26 @@ p.flow-text {
 	}
 	.loading-label {
 		top: 20%;
+	}
+	.parallax img {
+		min-height: 100vh;
+	}
+	#section-splash {
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: top center;
+		background-image: url("http://i.onionstatic.com/onion/5322/3/16x9/1600.jpg");
+	}
+	#section-about {
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: top center;
+		background-image: url("https://upload.wikimedia.org/wikipedia/commons/2/2f/United_States_Capitol_-_west_front_tilt_correct.jpg");
+	}
+	#section-2 {
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: top center;
+		background-image: url("http://www.gpb.org/sites/www.gpb.org/files/gettyimages-488231232_wide-7bffa1f85e43aa775aba3925125dfe1c1c560b13.jpg");
 	}
 }
