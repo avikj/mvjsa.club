@@ -1,5 +1,10 @@
 @import "components/color";
 @import "components/variables";
+html, body {
+	position: relative;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
 .preloader-section {
 	position: fixed;
 	margin-top: -10vh;
@@ -75,6 +80,9 @@ p.flow-text {
 }
 .card-panel {
 	opacity: 0.8;
+}
+footer {
+	position: relative;
 }
 @media (max-width: 600px) {
 	#section-2 {
