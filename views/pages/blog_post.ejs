@@ -11,14 +11,9 @@
     <h4 class="post-author">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></h4>
     <div class="divider"></div>
     <div class="post-body"><%- blogPost.body %></div>
-    <!--<div class="comments-wrapper">
-      <% blogPost.comments.forEach(function(comment){ %>
-        <div class="comment">
-          <h5 class="comment-author"><%= comment.author %></h5>
-          <p class="comment-body"><%= comment.body %></p>
-        </div>
-      <% }); %>
-    </div>-->
+    <div class="comments-wrapper">
+      <div class="fb-comments" data-href="http://mvjsa-avikj.rhcloud.com/blog/<%= blogPost._id %>" data-width="100%" data-numposts="10"></div>
+    </div>
     <% if(blogPost.status == 'pending') { %>
       <div class="row">
         <form method="POST" action="/blog/pending/<%= blogPost._id %>/accept" class="col m6 row">
