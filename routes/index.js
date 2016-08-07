@@ -4,8 +4,8 @@ var isAdmin = require('../passport/isAdmin');
 var isAuthenticated = require('../passport/isAuthenticated');
 var BlogPost = require('../models/blogPost.js');
 module.exports = function(passport) {
-  router.get('/.well-known/acme-challenge/IDGSzg1JK7LCAsHNH105HsN9RVqpQ57SbfTDCMGRHw0', function(req, res) {
-    res.send('IDGSzg1JK7LCAsHNH105HsN9RVqpQ57SbfTDCMGRHw0.94Rn-pjruCCkD_hGKMC98ZeBeNrgWqUemcvHKhkN6NY');
+  router.get('/.well-known/acme-challenge/pGtwxfp3rDpmBFrxAtZw8I8SXvRSQmJtHJpwhJLDzEw', function(req, res) {
+    res.send('pGtwxfp3rDpmBFrxAtZw8I8SXvRSQmJtHJpwhJLDzEw.94Rn-pjruCCkD_hGKMC98ZeBeNrgWqUemcvHKhkN6NY');
   });
   /* GET home page. */
   router.get('/', function(req, res, next) {
