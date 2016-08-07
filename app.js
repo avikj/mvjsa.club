@@ -58,6 +58,10 @@ configurePassport(passport);
 app.use('/', routes);
 app.use('/blog',blogRoutes);
 app.use('/admin', isAdmin, adminRoutes);
+
+app.get('/.well-known/acme-challenge/aubXge5tnTFrvlkzsRUQk4YHX0yk7JFjWgmtCogoMj8', function(req, res) {
+  res.send('aubXge5tnTFrvlkzsRUQk4YHX0yk7JFjWgmtCogoMj8.94Rn-pjruCCkD_hGKMC98ZeBeNrgWqUemcvHKhkN6NY');
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
