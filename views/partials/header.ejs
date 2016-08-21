@@ -38,11 +38,11 @@
   <div class="header-wrapper">
     <div class="navbar-fixed">
       <nav class="site-nav white-text">
-        <a href="/" class="brand-logo hide-on-large-only">MV JSA<!--<img src="/img/mvjsa_logo.png" alt="MV JSA"/>--></a>
+        <a href="/" class="brand-logo hide-on-large-only">MV<span class="bold">JSA</span><!--<img src="/img/mvjsa_logo.png" alt="MV<span class="bold">JSA</span>"/>--></a>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         <div class="nav-wrapper hide-on-med-and-down">
           <div class="container">
-            <a href="/" class="brand-logo">MV JSA<!--<img src="/img/mvjsa_logo.png" alt="MV JSA"/>--></a>
+            <a href="/" class="brand-logo">MV<span class="bold">JSA</span><!--<img src="/img/mvjsa_logo.png" alt="MV<span class="bold">JSA</span>"/>--></a>
             <ul id="nav-mobile" class="menu right hide-on-med-and-down">
               <li class="waves-effect <%= currentView == 'index' ? 'active' : '' %>"><a href="/">Home</a></li>
               <li class="waves-effect <%= currentView == 'blog' ? 'active' : '' %>"><a href="/blog">Blog</a></li>
@@ -108,6 +108,9 @@
           <% } %>
         </ul>
       </nav>
+      <a href="http://jsa.org/" target="_blank">
+        <img id="jsa-ribbon" class="animated slideInDown" src="/img/jsaribbon.png" />
+      </a>
     </div>
   </div>
 </header>

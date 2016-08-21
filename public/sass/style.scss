@@ -11,6 +11,18 @@ html {
 .primary-color-background {
 	background-color: $primary-color;
 }
+#jsa-ribbon {
+	position: fixed;
+	top: 8vh;
+	right: 3vw;
+	width: 8%;
+	z-index: 50;
+}
+@media (max-width: 1024px) {
+	#jsa-ribbon {
+		width: 12%;
+	}
+}
 h1 {
 	font-weight: 400;
 	font-size: 3em;
@@ -64,7 +76,11 @@ nav ul li {
 	}
 }
 .brand-logo {
-	font-weight: 300;
+	font-size: 0.8em;
+	font-weight: 100;
+	.bold {
+		font-weight: 700;
+	}
 }
 
 /* blog styles */
