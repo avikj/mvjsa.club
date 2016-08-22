@@ -13,7 +13,7 @@ html {
 }
 #jsa-ribbon {
 	position: fixed;
-	top: 8vh;
+	top: 64px; // materialize navbar height
 	right: 3vw;
 	width: 8%;
 	z-index: 50;
@@ -21,6 +21,12 @@ html {
 @media (max-width: 1024px) {
 	#jsa-ribbon {
 		width: 12%;
+	}
+}
+@media (max-width: 600px) {
+	#jsa-ribbon {
+		top: 56px; // materialize navbar height for small screens
+		width: 15%;
 	}
 }
 h1 {
