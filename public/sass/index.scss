@@ -6,9 +6,9 @@ html, body {
 	margin-bottom: 0;
 }
 .preloader-section {
+	display: none; // remove to add preloader
 	position: fixed;
-	margin-top: -10vh;
-	height: 100vh;
+	height: 110vh;
 	width: 100vw;
 	z-index: 100000;
 	background: $primary-color;
