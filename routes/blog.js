@@ -5,6 +5,7 @@ var isAuthenticated = require('../passport/isAuthenticated');
 var isAdmin = require('../passport/isAdmin');
 var BlogPost = require('../models/blogPost')
 
+var toUrlFriendlyString = require('../utils/toUrlFriendlyString');
 router.get('/', function(req, res, next) {
   BlogPost.find({status: 'accepted'})
     .populate('author')
@@ -25,7 +26,8 @@ router.post('/new', isAuthenticated, function(req, res, next) {
     createdAt: new Date(),
     author: req.user._id,
     comments: [],
-    status: 'pending'
+    status: 'pending',
+    urlString: toUrlFriendlyString(req.body.postTitle)
   });
 
   newBlogPost.save(function(err) {
@@ -62,13 +64,18 @@ router.post('/pending/:postId/reject', isAdmin, function(req, res, next) {
     res.redirect('/member');
   });
 });
-
 router.get('/:postId', function(req, res, next) {
+  res.redirect(`/blog/${req.params.postId}/-`)
+});
+router.get('/:postId/:urlString', function(req, res, next) {
   BlogPost.findOne({_id: req.params.postId, status: 'accepted'})
     .populate('author')
     .populate('comments.author')
     .exec(function(err, blogPost) {
       if(blogPost) {
+        if(blogPost.urlString != req.params.urlString) {
+          res.redirect(`/blog/${blogPost._id}/${blogPost.urlString}`);
+        }
         res.render('blog_post', { user: req.user, currentView: 'blog_post', blogPost: blogPost});
       } else {
         next(); // forward request to 404 handler

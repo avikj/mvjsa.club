@@ -1,5 +1,10 @@
 var mongoose = require('mongoose');
+var shortId = require('shortid');
 var blogPostSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    default: shortId.generate
+  },
   title: String,
   body: String,
   createdAt: Date,
@@ -18,7 +23,8 @@ var blogPostSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['accepted', 'rejected', 'pending']
-  }
+  },
+  urlString: String
 });
 
 module.exports = mongoose.model('BlogPost', blogPostSchema);
