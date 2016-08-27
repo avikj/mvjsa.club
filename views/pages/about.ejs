@@ -1,6 +1,18 @@
 <% include ../partials/header %>
-<div class="content-wrapper container">
-	<h1 class="content-header">About MV JSA</h1>
-    <!-- content here -->
+<div class="content-wrapper" id="about-wrapper">
+	<div class="container">
+		<h1>About MV<strong>JSA</strong></h1>
+	  <p>Welcome to Monta Vista Junior State of America! Our club is an official chapter of the national JSA organization, the largest student run club in the country. Join us for casual discussions on politics, current events, government, and more. Whether your knowledge spans the pages of The Economist or the headlines of BuzzFeed, you can be sure to meet a diverse group of people with a variety of viewpoints. Drop by for a meeting and become a part of the JSA experience!</p>
+	  <h2>Officers</h2>
+	  <div class="row">
+	  	<% officers.forEach(function(officer) { %>
+		  	<div class="team-item col l3 m4 s12">
+		  		<img src="<%= officer.image %>"/>
+		  		<p class="name"><%= officer.name %></p>
+		  		<p class="title"><%= officer.title %></p>
+		  	</div>
+	  	<% }); %>
+	  </div>
+  </div>
 </div>
 <% include ../partials/footer %>

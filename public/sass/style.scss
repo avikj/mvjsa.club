@@ -30,8 +30,11 @@ html {
 	}
 }
 h1 {
-	font-weight: 400;
+	font-weight: 300;
 	font-size: 3em;
+	strong {
+		font-weight: 700;
+	}
 }
 h2 {
 	font-weight: 500;
@@ -192,7 +195,30 @@ nav ul li {
 #edit-event-wrapper/*, #manage-points-wrapper */{
 	overflow: hidden;
 }
-
+#about-wrapper {
+	h2 {
+		font-weight: 700;
+		font-size: 2.2em;
+	}
+	.team-item {
+		padding: 3vh;
+		img {
+			width: 100%;
+			border-radius: 50%;
+		}
+		.name {
+			font-size: 1.4em;
+			font-weight: 400;
+			margin: 0;
+		}
+		.title {
+			font-size: 1.2em;
+			font-weight: 300;
+			margin: 0;
+		}
+		text-align: center;
+	}
+}
 /* footer styles */
 footer {
 	z-index: 100;

@@ -3,6 +3,7 @@ var router = express.Router();
 var isAdmin = require('../passport/isAdmin');
 var isAuthenticated = require('../passport/isAuthenticated');
 var BlogPost = require('../models/blogPost.js');
+var officers = require('../constants/officers.json');
 module.exports = function(passport) {
   router.get('/.well-known/acme-challenge/pGtwxfp3rDpmBFrxAtZw8I8SXvRSQmJtHJpwhJLDzEw', function(req, res) {
     res.send('pGtwxfp3rDpmBFrxAtZw8I8SXvRSQmJtHJpwhJLDzEw.94Rn-pjruCCkD_hGKMC98ZeBeNrgWqUemcvHKhkN6NY');
@@ -20,7 +21,7 @@ module.exports = function(passport) {
   });
 
   router.get('/about', function(req, res, next) {
-    res.render('about', { user: req.user, currentView: 'about' });
+    res.render('about', { user: req.user, currentView: 'about', officers: officers });
   });
 
   router.get('/login', function(req, res, next) {
