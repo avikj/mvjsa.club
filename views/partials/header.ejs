@@ -14,6 +14,7 @@
   <meta name="topic" content="Politics">
   <meta property="og:type" content="website">
   <meta property="og:title" content="<%= typeof blogPost == 'undefined' ? '' : (blogPost.title+' - MV JSA Blog') %>">
+  <meta property="og:image" content="<%= typeof ogImage == 'undefined' ? '/img/jsaribbon.png' : ogImage %>">
   <meta property="og:site_name" content="Monta Vista JSA">
   <meta property="og:locale" content="en_US">
   <meta property="article:author" content="<%= typeof blogPost == 'undefined' ? '' : (blogPost.author.fname+' '+blogPost.author.lname) %>">

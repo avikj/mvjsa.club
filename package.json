@@ -9,6 +9,7 @@
     "async": "^2.0.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.1",
+    "cheerio": "^0.22.0",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "dateformat": "^1.0.12",
