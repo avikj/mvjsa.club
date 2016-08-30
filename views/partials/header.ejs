@@ -8,13 +8,12 @@
   <meta name="description" content="MV JSA is Monta Vista's premiere politics club. Join us for casual discussions on politics, current events, government, and more.">
   <meta name="keywords" content="MV,JSA,Monta Vista,politics,club,Junior State,America">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Avik Jain">
+  <meta name="author" content="<%= typeof blogPost == 'undefined' ? 'Avik Jain' : (blogPost.author.fname+' '+blogPost.author.lname) %>">
   <meta name="robots" content="index,follow,noodp">
   <meta name="googlebot" content="index,follow">
   <meta name="topic" content="Politics">
   <meta property="og:type" content="website">
   <meta property="og:title" content="<%= typeof blogPost == 'undefined' ? '' : blogPost.title %>">
-  <meta property="og:description" content="<%= typeof blogPost == 'undefined' ? 'MV JSA is Monta Vista\'s premiere politics club. Join us for casual discussions on politics, current events, government, and more.' : (blogPost.body.replace(/<(?:.|\n)*?>/gm, '').substring(0, 30)+'...') %>">
   <meta property="og:site_name" content="Monta Vista JSA">
   <meta property="og:locale" content="en_US">
   <meta property="article:author" content="<%= typeof blogPost == 'undefined' ? '' : (blogPost.author.fname+' '+blogPost.author.lname) %>">
