@@ -427,6 +427,10 @@ $(document).ready(function(){
   $('.parallax').parallax();
   new WOW().init();
 });
+
+// make blog post links open in new tab
+$('.post-body a').attr('target', '_blank');
+
 $(window).on("load", function() {
   $('.preloader-section').addClass('animated fadeOut');
   $('.preloader-section').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
