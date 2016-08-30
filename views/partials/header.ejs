@@ -12,7 +12,12 @@
   <meta name="robots" content="index,follow,noodp">
   <meta name="googlebot" content="index,follow">
   <meta name="topic" content="Politics">
-
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="<%= typeof blogPost == 'undefined' ? '' : blogPost.title %>">
+  <meta property="og:description" content="<%= typeof blogPost == 'undefined' ? 'MV JSA is Monta Vista\'s premiere politics club. Join us for casual discussions on politics, current events, government, and more.' : blogPost.body.replace(/<(?:.|\n)*?>/gm, '') %>">
+  <meta property="og:site_name" content="Monta Vista JSA">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:author" content="<%= typeof blogPost == 'undefined' ? '' : (blogPost.author.fname+' '+blogPost.author.lname) %>">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/css/materialize.css" media="screen,projection">
   <link rel="stylesheet" href="/css/style.css" media="screen,projection">
