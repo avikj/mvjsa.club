@@ -1,14 +1,31 @@
 <% include ../partials/header %>
-<div class="container">
-	<div class="content-wrapper">
-	  <h1 class="content-header">Member Portal</h1>
-	  <div>
-	    <h2>Name: <%= user.fname %> <%= user.lname %></h2>
-	    <h2>Grade: <%= user.grade %></h2>
-	    <h2>Email: <%= user.email %></h2>
-	    <h2>Phone: <%= user.phone %></h2>
-	    <h2>Birthday: <%= user.dob %></h2>
-	  </div>
+<div class="content-wrapper" style="overflow-y: auto;">
+	<div class="container">
+	  <h2 class="content-header">Your Blog Posts</h2>
+		<div class="row">
+			<% if(blogPosts.length > 0) { %>
+			  <% blogPosts.forEach(function(blogPost, index){ %>
+				  <div class="blog-post-link">
+				  	<div class="card col m5 <%= index%2==1 ? 'offset-m2' : '' %> s12 truncate valign-wrapper">
+					  	<div class="card-content valign">
+						    <h3 class="card-title post-title black-text truncate"><%= blogPost.title %></h3>
+						    <div class="author-date-wrapper">
+						    	<p class="black-text">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></p>
+						    	<p class="black-text date"><%= formatDate(blogPost.publishedAt) %></p>
+						    	<br>
+						    	<p class="<%= blogPost.status == 'accepted' ? 'green-text' : (blogPost.status == 'pending' ? 'orange-text' : 'red-text') %> text-lighten-2"><%= blogPost.status.toUpperCase() %></p>
+						    	<% if(blogPost.status == 'accepted') { %>
+						    		<a href="/blog/<%= blogPost._id %>" class="blue-text text-lighten-2 white">VIEW</a>
+						    	<% } %>
+						    </div>
+						   </div>
+					  </div>
+				  </div>
+				<% }); %>
+			<% } else { %>
+				<p class="flow-text">Nothing to show.</p>
+			<% } %>
+		</div>
 	</div>
 </div>
 <% include ../partials/footer %>

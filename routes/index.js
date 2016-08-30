@@ -36,7 +36,16 @@ module.exports = function(passport) {
     if(req.user.isAdmin){
       res.redirect('/admin')
     } else {
-      res.render('member', { user: req.user, currentView: 'member' });
+      BlogPost.find({author: req.user._id})
+        .populate('author')
+        .populate('comments.author')
+        .exec(function(err, blogPosts) {
+          if(blogPosts){
+            res.render('member', { user: req.user, currentView: 'member', blogPosts: blogPosts });
+          } else {
+            next();
+          }
+        });
     }
   });
   
