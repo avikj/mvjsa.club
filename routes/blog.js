@@ -76,7 +76,7 @@ router.get('/:postId/:urlString', function(req, res, next) {
         if(blogPost.urlString != req.params.urlString) {
           res.redirect(`/blog/${blogPost._id}/${blogPost.urlString}`);
         }
-        res.render('blog_post', { user: req.user, currentView: 'blog_post', blogPost: blogPost});
+        res.render('blog_post', { user: req.user, currentView: 'blog_post', blogPost: blogPost, title: blogPost.title+' - MV JSA'});
       } else {
         next(); // forward request to 404 handler
       }
