@@ -128,14 +128,21 @@ nav ul li {
 		font-weight: 300;
 		font-size: 1.3em;
 	}
+	img {
+		max-width: 100%;
+		height: auto;
+	}
 	@media screen and (max-width: 992) {
 		padding: 20px;
 	}
+	a {
+		color: #64b5f6;
+	}
+	a:visited {
+		color: #1565c0;
+	}
 }
-.blog-post img {
-	max-width: 100%;
-	height: auto;
-}
+
 
 /* new blog post form styles */
 #post-title-input {
