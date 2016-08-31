@@ -26,6 +26,21 @@
 				<p class="flow-text">Nothing to show.</p>
 			<% } %>
 		</div>
+		<br>
+		<h2 class="content-header">Your Activity Points: <%= totalPoints %></h2>
+		<div class="row">
+			<% attendedEvents.forEach(function(eventInfo) { %>
+				<div class="card col m3 s12 truncate valign-wrapper">
+			  	<div class="card-content valign">
+				    <h3 class="card-title post-title black-text truncate"><%= eventInfo.event.name %></h3>
+				    <div class="author-date-wrapper">
+				    	<p class="black-text"><%= eventInfo.event.getType() %></p>
+				    	<p><%= eventInfo.points %> Points</p>
+				    </div>
+				   </div>
+			  </div>
+			<% }); %>
+		</div>
 	</div>
 </div>
 <% include ../partials/footer %>

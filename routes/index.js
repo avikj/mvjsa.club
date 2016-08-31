@@ -41,7 +41,9 @@ module.exports = function(passport) {
         .populate('comments.author')
         .exec(function(err, blogPosts) {
           if(blogPosts){
-            res.render('member', { user: req.user, currentView: 'member', blogPosts: blogPosts });
+            req.user.getActivityPoints(function(err, totalPoints, attendedEvents) {
+              res.render('member', { user: req.user, currentView: 'member', blogPosts: blogPosts, totalPoints: totalPoints, attendedEvents: attendedEvents });
+            });
           } else {
             next();
           }

@@ -30,15 +30,17 @@ userSchema.methods.getActivityPoints = function(cb) {
     if(err) {
       return cb(err);
     }
-    var result = 0;
+    var totalPoints = 0;
+    var attendedEvents = [];
     events.forEach(function(event) {
       event.attendees.forEach(function(attendee) {
         if(attendee.user.toString() == currentUser._id.toString()) {
-          result += attendee.points;
+          totalPoints += attendee.points;
+          attendedEvents.push({ event: event, points: attendee.points });
         }
       });
     });
-    cb(null, result);
+    cb(null, totalPoints, attendedEvents);
   });
 }
 
