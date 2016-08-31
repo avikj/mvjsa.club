@@ -35,4 +35,23 @@ $(document).ready(function(){
       }
     });
   });
+  $("#edit-blog-post-form").submit(function(evt) {
+    evt.preventDefault();
+    var title = $('#post-title-input').val();
+    var body = tinymce.activeEditor.getContent();
+    if(title == '' || body == '') {
+      Materialize.toast('Please fill out all fields.');
+      return;
+    }
+    $.post('/blog/edit/'+$('#edit-blog-post-form').attr('data-postId'), {
+      postTitle: title,
+      postBody: body
+    }, function(data) {
+      if(data == 'OK') {
+        window.location.replace('/blog/'+$('#edit-blog-post-form').attr('data-postId'));
+      } else {
+        Materialize.toast('Could not edit post.', 2000);
+      }
+    });
+  });
 });

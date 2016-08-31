@@ -1,34 +1,41 @@
 <% include ../partials/header %>
 <div class="content-wrapper">
-<div class="container">
-  <div class="blog-post z-depth-2">
-    <h2 class="post-title">
-      <%= blogPost.title %>
+  <div class="container">
+    <div class="blog-post z-depth-2">
+      <h2 class="post-title">
+        <%= blogPost.title %>
+        <% if(blogPost.status == 'pending') { %>
+          <span class="red-text text-lighten-2">(Pending Review)</span>
+        <% } %>
+      </h2>
+      <h4 class="post-author">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></h4>
+      <div class="divider"></div>
+      <div class="post-body"><%- blogPost.body %></div>
       <% if(blogPost.status == 'pending') { %>
-        <span class="red-text text-lighten-2">(Pending Review)</span>
-      <% } %>
-    </h2>
-    <h4 class="post-author">By <%= blogPost.author.fname %> <%= blogPost.author.lname %></h4>
-    <div class="divider"></div>
-    <div class="post-body"><%- blogPost.body %></div>
-    <% if(blogPost.status == 'pending') { %>
-      <div class="row">
-        <form method="POST" action="/blog/pending/<%= blogPost._id %>/accept" class="col m6 row">
-          <button type="submit" class="btn btn-large waves-effect blue lighten-2 col m12">ACCEPT</button>
-        </form>
-        <form method="POST" action="/blog/pending/<%= blogPost._id %>/reject" class="col m6 row">
-          <button type="submit" class="btn btn-large waves-effect red lighten-2 col m12">REJECT</button>
-        </form>
-      </div>
-    <% } else { %>
-      <div class="fb-like" data-href="http://mvjsa.club/blog/<%= blogPost._id %>/<%= blogPost.urlString %>" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
-      <div class="comments-wrapper">
-        <div class="fb-comments" data-href="http://mvjsa.club/blog/<%= blogPost._id %>/<%= blogPost.urlString %>" data-width="100%" data-numposts="10"></div>
-      </div> 
-      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57c44e52266e91db"></script>
+        <div class="row">
+          <form method="POST" action="/blog/pending/<%= blogPost._id %>/accept" class="col m6 row">
+            <button type="submit" class="btn btn-large waves-effect blue lighten-2 col m12">ACCEPT</button>
+          </form>
+          <form method="POST" action="/blog/pending/<%= blogPost._id %>/reject" class="col m6 row">
+            <button type="submit" class="btn btn-large waves-effect red lighten-2 col m12">REJECT</button>
+          </form>
+        </div>
+      <% } else { %>
+        <div class="fb-like" data-href="http://mvjsa.club/blog/<%= blogPost._id %>/<%= blogPost.urlString %>" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+        <div class="comments-wrapper">
+          <div class="fb-comments" data-href="http://mvjsa.club/blog/<%= blogPost._id %>/<%= blogPost.urlString %>" data-width="100%" data-numposts="10"></div>
+        </div> 
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57c44e52266e91db"></script>
 
-    <% } %>
+      <% } %>
+    </div>
   </div>
 </div>
-</div>
+<% if(typeof user != 'undefined' && user._id.equals(blogPost.author._id)) { %>
+  <div class="fixed-action-btn" id="edit-blog-post-btn">
+    <a href="/blog/edit/<%= blogPost._id %>/" class="center-align btn-floating btn-large red waves-effect valign tooltipped" data-position="left" data-delay="50" data-tooltip="Edit Post">
+      <i class="large material-icons">edit</i>
+    </a>
+  </div>
+<% } %>
 <% include ../partials/footer %>

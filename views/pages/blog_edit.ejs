@@ -1,0 +1,13 @@
+<% include ../partials/header %>
+<div class="content-wrapper">
+<div class="container">
+	<h1>Edit Blog Post</h1>
+	<form id="edit-blog-post-form" data-postId="<%= blogPost._id %>">
+	  <input placeholder="Title" value="<%= blogPost.title %>" id="post-title-input" type="text">
+	  <textarea id="post-content-textarea" spellcheck="true"><%- blogPost.body %></textarea>
+	  <br>
+	  <button type="submit" class="btn btn-large materialize-red lighten-2 submit">SUBMIT <i class="material-icons right">send</i></button>
+	</form>
+</div>
+</div>
+<% include ../partials/footer %>

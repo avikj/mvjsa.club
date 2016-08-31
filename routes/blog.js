@@ -84,5 +84,38 @@ router.get('/:postId/:urlString', function(req, res, next) {
       }
     });
 });
-
+router.get('/edit/:postId', isAuthenticated, function(req, res, next) {
+  BlogPost.findOne({_id: req.params.postId})
+    .populate('author')
+    .populate('comments.author')
+    .exec(function(err, blogPost) {
+      if(blogPost && blogPost.author._id.equals(req.user._id)) {
+        res.render('blog_edit', { user: req.user, currentView: 'blog_edit', blogPost: blogPost, title: 'Edit '+blogPost.title+' - MV JSA' });
+      } else {
+        next(); // forward request to 404 handler
+      }
+    });
+});
+router.post('/edit/:postId', isAuthenticated, function(req, res, next) {
+  BlogPost.findOne({_id: req.params.postId, status: 'accepted'})
+    .populate('author')
+    .populate('comments.author')
+    .exec(function(err, blogPost) {
+      if(blogPost && blogPost.author._id.equals(req.user._id)) {
+        blogPost.body = req.body.postBody;
+        blogPost.title = req.body.postTitle;
+        blogPost.urlString = toUrlFriendlyString(req.body.postTitle);
+        blogPost.save(function(err) {
+          if(err) {
+            res.sendStatus(520);
+            throw err;
+          } else {
+            res.sendStatus(200);
+          }
+        });
+      } else {
+        next(); // forward request to 404 handler
+      }
+    });
+});
 module.exports = router;
