@@ -19,7 +19,11 @@ router.get('/new', isAuthenticated, function(req, res, next) {
   res.render('blog_new', { user: req.user, currentView: 'blog_new'})
 });
 
-router.post('/new', isAuthenticated, function(req, res, next) {
+router.post('/new', isAuthenticated, function(req, res, next) { 
+  var $ = cheerio.load(req.body.postBody);
+  if($('script').length > 0) { // attempted script injection smh
+    return res.sendStatus(403);
+  }
   var newBlogPost = new BlogPost({
     title: req.body.postTitle,
     body: req.body.postBody,
@@ -29,7 +33,6 @@ router.post('/new', isAuthenticated, function(req, res, next) {
     status: 'pending',
     urlString: toUrlFriendlyString(req.body.postTitle)
   });
-
   newBlogPost.save(function(err) {
     if(err) {
       res.sendStatus(520);
