@@ -9,7 +9,7 @@ var toUrlFriendlyString = require('../utils/toUrlFriendlyString');
 router.get('/', function(req, res, next) {
   BlogPost.find({status: 'accepted'})
     .populate('author')
-    .sort({ _id: -1 })
+    .sort({ publishedAt: -1 })
     .exec(function(err, blogPosts) {
       res.render('blog', { user: req.user, currentView: 'blog', blogPosts: blogPosts });
     });
