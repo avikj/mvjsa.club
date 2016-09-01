@@ -31,7 +31,7 @@
     </div>
   </div>
 </div>
-<% if(typeof user != 'undefined' && (user._id.equals(blogPost.author._id)) || user.isAdmin) { %>
+<% if(typeof user != 'undefined' && (user._id.equals(blogPost.author._id) || user.isAdmin)) { %>
   <div class="fixed-action-btn" id="edit-blog-post-btn">
     <a href="/blog/edit/<%= blogPost._id %>/" class="center-align btn-floating btn-large red waves-effect valign tooltipped" data-position="left" data-delay="50" data-tooltip="Edit Post">
       <i class="large material-icons">edit</i>
