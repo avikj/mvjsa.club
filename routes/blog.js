@@ -74,7 +74,7 @@ router.get('/:postId/:urlString', function(req, res, next) {
     .exec(function(err, blogPost) {
       if(blogPost) {
         if(blogPost.urlString != req.params.urlString) {
-          res.redirect(`/blog/${blogPost._id}/${blogPost.urlString}`);
+          return res.redirect(`/blog/${blogPost._id}/${blogPost.urlString}`);
         }
         var $ = cheerio.load(blogPost.body);
         var ogImage = $('img')[0] ? ($('img').attr('src')) : null;
