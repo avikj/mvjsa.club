@@ -89,7 +89,7 @@ router.get('/edit/:postId', isAuthenticated, function(req, res, next) {
     .populate('author')
     .populate('comments.author')
     .exec(function(err, blogPost) {
-      if(blogPost && blogPost.author._id.equals(req.user._id)) {
+      if(blogPost && (blogPost.author._id.equals(req.user._id) || req.user.isAdmin)) {
         res.render('blog_edit', { user: req.user, currentView: 'blog_edit', blogPost: blogPost, title: 'Edit '+blogPost.title+' - MV JSA' });
       } else {
         next(); // forward request to 404 handler
@@ -101,7 +101,7 @@ router.post('/edit/:postId', isAuthenticated, function(req, res, next) {
     .populate('author')
     .populate('comments.author')
     .exec(function(err, blogPost) {
-      if(blogPost && blogPost.author._id.equals(req.user._id)) {
+      if(blogPost && (blogPost.author._id.equals(req.user._id) || req.user.isAdmin)) {
         blogPost.body = req.body.postBody;
         blogPost.title = req.body.postTitle;
         blogPost.urlString = toUrlFriendlyString(req.body.postTitle);
