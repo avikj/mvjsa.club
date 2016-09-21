@@ -30,7 +30,7 @@ $(document).ready(function(){
 			return "Please fill out all form fields.";
 		else if(phone1.length < 3 || phone2.length < 3 || phone3.length < 4 || !phone1.match(numericExpression) || !phone2.match(numericExpression) || !phone3.match(numericExpression))
 			return "Invalid phone number.";
-		else if(!dob1.match(numericExpression) || !dob2.match(numericExpression) || !dob3.match(numericExpression) || dob1.length < 2 || dob2.length < 2 || dob3.length < 2 || dob1 < 1 || dob1 > 12 || dob2 < 1 || dob2 > 31 || dob3 < 90)
+		else if(!dob1.match(numericExpression) || !dob2.match(numericExpression) || !dob3.match(numericExpression) || dob1 < 1 || dob1 > 12 || dob2 < 1 || dob2 > 31 || dob3 < 90)
 			return "Please enter your actual birthday.";
 		else if(!email.match(emailExp))
 			return "Invalid email address.";
