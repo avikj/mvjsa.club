@@ -40,6 +40,19 @@
 				   </div>
 			  </div>
 			<% }); %>
+			<% blogPosts.forEach(function(blogPost) { %>
+				<% if(blogPost.status == 'accepted') { %>
+					<div class="card col m3 s12 truncate valign-wrapper">
+				  	<div class="card-content valign">
+					    <h3 class="card-title post-title black-text truncate"><%= blogPost.title %></h3>
+					    <div class="author-date-wrapper">
+					    	<p>Blog Post</p>
+					    	<p>5 Points</p>
+					    </div>
+					   </div>
+				  </div>
+			  <% } %>
+			<% }); %>
 		</div>
 	</div>
 </div>
