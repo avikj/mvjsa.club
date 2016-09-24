@@ -5,12 +5,6 @@ var isAuthenticated = require('../passport/isAuthenticated');
 var BlogPost = require('../models/blogPost.js');
 var officers = require('../constants/officers.json');
 module.exports = function(passport) {
-  router.get('/.well-known/acme-challenge/pGtwxfp3rDpmBFrxAtZw8I8SXvRSQmJtHJpwhJLDzEw', function(req, res) {
-    res.send('pGtwxfp3rDpmBFrxAtZw8I8SXvRSQmJtHJpwhJLDzEw.94Rn-pjruCCkD_hGKMC98ZeBeNrgWqUemcvHKhkN6NY');
-  });
-  router.get('/.well-known/acme-challenge/wpDaSlgY7eMn6nMaJNbnhgDL_2bq2psR4sBoxUZEHww', function(req, res) {
-    res.send('wpDaSlgY7eMn6nMaJNbnhgDL_2bq2psR4sBoxUZEHww.94Rn-pjruCCkD_hGKMC98ZeBeNrgWqUemcvHKhkN6NY');
-  });
   /* GET home page. */
   router.get('/', function(req, res, next) {
     res.render('index', { user: req.user, currentView: 'index' });
