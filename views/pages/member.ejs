@@ -28,33 +28,37 @@
 		</div>
 		<br>
 		<h2 class="content-header">Your Activity Points: <%= totalPoints %></h2>
-		<table class="centered striped responsive-table">
-			<thead>
-				<tr>
-          <th>Item Name</th>
-          <th>Type</th>
-          <th>Points</th>
-        </tr>
-			</thead>
-			<tbody>
-				<% attendedEvents.forEach(function(eventInfo) { %>
+		<% if(totalPoints > 0) { %>
+			<table class="centered striped responsive-table">
+				<thead>
 					<tr>
-						<td><%= eventInfo.event.name %></td>
-						<td><%= eventInfo.event.getType() %></td>
-						<td><%= eventInfo.points %></td>
-					</tr>
-				<% }); %>
-				<% blogPosts.forEach(function(blogPost) { %>
-					<% if(blogPost.status == 'accepted') { %>
+	          <th>Item Name</th>
+	          <th>Type</th>
+	          <th>Points</th>
+	        </tr>
+				</thead>
+				<tbody>
+					<% attendedEvents.forEach(function(eventInfo) { %>
 						<tr>
-							<td class="truncate"><%= blogPost.title %></td>
-							<td>Blog Post</td>
-							<td>5</td>
+							<td><%= eventInfo.event.name %></td>
+							<td><%= eventInfo.event.getType() %></td>
+							<td><%= eventInfo.points %></td>
 						</tr>
-				  <% } %>
-				<% }); %>
-			</tbody>
-		<table>
+					<% }); %>
+					<% blogPosts.forEach(function(blogPost) { %>
+						<% if(blogPost.status == 'accepted') { %>
+							<tr>
+								<td class="truncate"><%= blogPost.title %></td>
+								<td>Blog Post</td>
+								<td>5</td>
+							</tr>
+					  <% } %>
+					<% }); %>
+				</tbody>
+			<table>
+			<% } else { %>
+				<p class="flow-text">Nothing to show.</p>
+			<% } %>
 		<br>
 	</div>
 </div>
